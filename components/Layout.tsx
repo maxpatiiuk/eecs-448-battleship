@@ -104,7 +104,12 @@ function Layout({
             <meta name="theme-color" content={themeColor} />
             {props}
           </Head>
-          <div id="root">{children(language)}</div>
+          <div
+            id="root"
+            className="flex justify-center w-screen h-screen p-10 bg-blue-900"
+          >
+            {children(language)}
+          </div>
         </>
       )}
     </LanguageContext.Consumer>

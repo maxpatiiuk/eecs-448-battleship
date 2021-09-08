@@ -10,7 +10,7 @@ const siteInfo: LanguageStringsStructure<{
   no: string;
 }> = {
   'en-US': {
-    title: 'EECS 448: Battleship',
+    title: 'Battleship',
     description: strip(`EECS 448: Battleship`),
     keywords: strip(`EECS 448: Battleship`),
     author: 'EECS 448 Team 5',
