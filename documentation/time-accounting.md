@@ -14,24 +14,24 @@ An hour by our breakdown of time spent on this project
     <tbody>
         <tr>
             <th rowspan=5>Planning</th>
-            <td>Creating documentation boilerplate and project structure</td>
+            <td>Team meeting</td>
             <td>0.5h</td>
+            <td>Team</td>
+        </tr>
+        <tr>
+            <td>Creating documentation boilerplate and project structure</td>
+            <td>1h</td>
             <td>Max Patiiuk</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
-            <td></td>
+            <td>Deciding on the language & platform</td>
+            <td>0.5h</td>
+            <td>Team</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>0h</td>
-            <td></td>
+            <td>Creating time schedule and improving documentation</td>
+            <td>1h</td>
+            <td>Max Patiiuk</td>
         </tr>
         <tr>
             <td></td>
@@ -123,4 +123,3 @@ An hour by our breakdown of time spent on this project
         </tr>
     </tbody>
 </table>
-

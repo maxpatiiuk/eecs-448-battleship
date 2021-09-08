@@ -13,92 +13,70 @@ complete.
     </thead>
     <tbody>
         <tr>
-            <th rowspan=5>Planning</th>
+            <th rowspan=4>Planning</th>
+            <td>Team meetings</td>
+            <td>4h</td>
+        </tr>
+        <tr>
             <td>Creating documentation boilerplate and project structure</td>
             <td>0.5h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
+            <td>Deciding on the language & platform</td>
+            <td>0.5h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
+            <td>Planning features and creating UI wireframe</td>
+            <td>1h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>0h</td>
+            <td>Assigning team roles and dicussing priorities</td>
+            <td>0.5h</td>
         </tr>
         <tr>
             <th rowspan=5>Implementation</th>
-            <td></td>
-            <td>0h</td>
+            <td>Developing Game Setup Screen</td>
+            <td>2h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
+            <td>Developing the game board with ships on it</td>
+            <td>1h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
+            <td>
+                Developing core gameplay elements (Destroying a ship, et. al.)
+            </td>
+            <td>2h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
+            <td>Developing Win/Lose screen</td>
+            <td>1h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
+            <th rowspan=3>Integration</th>
+            <td>Deploying the game on a web server</td>
+            <td>1h</td>
         </tr>
         <tr>
-            <th rowspan=5>Integration</th>
-            <td></td>
-            <td>0h</td>
+            <td>Getting team feedback on features and polishing the UI</td>
+            <td>1h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
+            <td>Adding nice to have UI features</td>
+            <td>0.5h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
+            <th rowspan=1>Testing and Maintenance</th>
+            <td>General testing</td>
+            <td>1h</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>0h</td>
-        </tr>
-        <tr>
-            <th rowspan=5>Testing and Maintenance</th>
-            <td></td>
-            <td>0h</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>0h</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>0h</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>0h</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>0h</td>
+            <td>Testing on mobile</td>
+            <td>1h</td>
         </tr>
         <tr>
             <th colspan=2>Total</th>
-            <td>0h</td>
+            <td>16.5h</td>
         </tr>
     </tbody>
 </table>
