@@ -8,33 +8,10 @@
     "type": "git",
     "url": "git://github.com/maxxxxxdlp/eecs-448-battleship"
   },
-  "scripts": {
-    "build": "next build",
-    "debug": "NODE_OPTIONS='--inspect' next dev",
-    "dev": "next dev",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "^11.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-modal": "^3.14.3",
-    "tailwindcss": "^2.2.7",
-    "typesafe-reducer": "^1.0.2"
-  },
   "devDependencies": {
     "@maxxxxxdlp/eslint-config": "^1.0.7",
     "@maxxxxxdlp/stylelint-config": "^0.1.2",
-    "@types/node": "^16.4.9",
-    "@types/react": "^17.0.15",
-    "@types/react-dom": "^17.0.9",
-    "@types/react-modal": "^3.12.1",
-    "@types/styled-jsx": "^2.2.9",
-    "autoprefixer": "^10.3.1",
     "eslint": "^7.32.0",
-    "postcss": "^8.3.6",
-    "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-preset-env": "^6.7.0",
     "prettier": "^2.3.2",
     "stylelint": "^13.13.1",
     "typescript": "^4.3.5"

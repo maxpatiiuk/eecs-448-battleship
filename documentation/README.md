@@ -23,34 +23,36 @@ This project uses pre-commit.com hooks, which run code linters and validators
 before every commit. Instructions for configuring pre-commit hooks can be found
 in [.pre-commit-config.yaml](../.pre-commit-config.yaml)
 
-Then run these commands:
+(Optional) Install development dependencies:
 
 ```zsh
-npm i       # install dependencies
-npm run dev # start development server
+npm i  # install development dependencies
 ```
 
-This would start the development server at
-[http://locahlost:3000](http://locahlost:3000).
+To start a development server, navigate to the inner `eecs-448-battleship`
+directory and run this command to start a static server (assuming you have
+python installed):
+
+```zsh
+python -m http.server 8000
+```
+
+Now, navigate to [http://localhost:8000](http://localhost:8000) and start
+hacking away!
+
+If you don't have python installed, you can use any one of
+[these static web servers](https://gist.github.com/willurd/5720255)
 
 ## Production
 
-Run these commands:
+Clone this repository
 
 ```zsh
-npm i         # install dependencies
-npm run build # begin the build process
-npm run start # start production server
+git clone https://github.com/maxxxxxdlp/eecs-448-battleship
 ```
 
-This would start the production server at
-[http://locahlost:3000](http://locahlost:3000).
-
-Afterward, you can deploy this site at [https://vercel.com](https://vercel.com).
-
-Alternatively, you can configure a reverse proxy (e.x Nginx) that would handle
-the SSL certificate and forward the requests to port 80, which should be made
-externally available.
+Configure a reverse proxy (e.x Nginx) that would serve eecs-448-battleship
+folder on a public URL and handle the SSL certificate.
 
 ## Works Cited
 

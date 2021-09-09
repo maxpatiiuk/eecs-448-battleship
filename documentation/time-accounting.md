@@ -34,20 +34,15 @@ An hour by our breakdown of time spent on this project
             <td>Max Patiiuk</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
-            <td></td>
-        </tr>
-        <tr>
             <th rowspan=5>Implementation</th>
-            <td></td>
-            <td>0h</td>
-            <td></td>
+            <td>Beginning to write the game in Next.JS</td>
+            <td>1h</td>
+            <td>Max Patiiuk</td>
         </tr>
         <tr>
-            <td></td>
-            <td>0h</td>
-            <td></td>
+            <td>Rewriting the game to vanilla JS</td>
+            <td>1h</td>
+            <td>Max Patiiuk</td>
         </tr>
         <tr>
             <td></td>
