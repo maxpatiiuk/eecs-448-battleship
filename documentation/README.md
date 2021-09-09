@@ -26,7 +26,7 @@ in [.pre-commit-config.yaml](../.pre-commit-config.yaml)
 (Optional) Install development dependencies:
 
 ```zsh
-npm i  # install development dependencies
+npm i # install development dependencies
 ```
 
 To start a development server, navigate to the inner `eecs-448-battleship`

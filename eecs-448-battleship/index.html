@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Battleship</title>
+    <link rel="icon" href='/favicon.ico"' />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content="EECS 448: Battleship" />
+    <meta name="keywords" content="EECS 448: Battleship" />
+    <meta name="author" content="EECS 448 Team 5" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icons/favicon-16x16.png"
+    />
+    <link rel="stylesheet" href="components/global/styles.css" />
+    <link rel="stylesheet" href="components/main/styles.css" />
+    <link rel="stylesheet" href="components/ship-placement/styles.css" />
+    <link rel="stylesheet" href="components/game-board/styles.css" />
+    <link rel="stylesheet" href="components/game-over/styles.css" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#001122" />
+    <meta name="msapplication-TileColor" content="#001122" />
+    <meta name="theme-color" content="#001122" />
+  </head>
+  <body>
+    <div id="root">
+      <div>
+        <h1>Battleship</h1>
+        <div id="container">
+          <div></div>
+        </div>
+        <span></span>
+      </div>
+    </div>
+    <script src="components/global/scripts.js"></script>
+    <script src="components/main/scripts.js"></script>
+    <script src="components/ship-placement/scripts.js"></script>
+    <script src="components/game-board/scripts.js"></script>
+    <script src="components/game-over/scripts.js"></script>
+    <script>
+      renderView('main', document.getElementById('container').children[0]);
+    </script>
+  </body>
+</html>

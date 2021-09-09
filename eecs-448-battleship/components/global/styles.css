@@ -1,0 +1,75 @@
+:root {
+  --b1: #000;
+  --b2: #222;
+  --b3: #444;
+  --b4: #666;
+  --t1: #fff;
+  --t2: #ddd;
+  --t3: #bbb;
+  --t4: #999;
+  --border: #555;
+  --darken: #000c;
+
+  --success: #2c0;
+  --error: #f24;
+  --modified: #ffa;
+
+  --accent-hover: #fdb;
+  --accent: #f73;
+  --accent-pale: #f94;
+
+  --animation-duration: 2s;
+
+  --quarter-size: 0.25rem;
+  --half-size: 0.5rem;
+  --size: 1rem;
+  --double-size: 2rem;
+
+  --border-size: 1px;
+  --border-radius: 3px;
+  --round: 99999px;
+
+  --table-icon-size: calc(var(--size) * 1.25);
+
+  /* Workbench */
+  --default-cell: #66f;
+  --highlighted-row: #07f6;
+  --new-cell: #aaf;
+  --invalid-cell: #faa;
+  --modified-cell: var(--modified);
+  --search-result: #afa;
+}
+
+body {
+  margin: 0;
+  /* Copied from GitHub's main page stylesheet */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI Variable',
+    'Segoe UI', system-ui, ui-sans-serif, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  background-color: var(--b1);
+  color: var(--t1);
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - var(--double-size) * 2);
+  padding: var(--double-size);
+}
+
+#root > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#root > div > h1 {
+  font-size: calc(var(--double-size) * 2);
+}
+
+/*#root #container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}*/
