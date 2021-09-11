@@ -9,4 +9,15 @@
   color: var(--t2);
 }
 .main button {
+  background-color: #e7e7e7;
+  color: black;
+  border: none;
+  padding: 25px;
+}
+
+.main button:hover {
+  background-color: #e7e7e7a9;
+  color: black;
+  border: none;
+  padding: 25px;
 }
