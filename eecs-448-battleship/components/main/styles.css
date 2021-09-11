@@ -1,0 +1,12 @@
+/* TODO: add styles for buttons */
+
+/*
+ * All elements would be housed under a container with the className equal
+ * to component name (e.g. .main or .ship-placement)
+ */
+
+.main p {
+  color: var(--t2);
+}
+.main button {
+}
