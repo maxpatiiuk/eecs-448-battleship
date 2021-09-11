@@ -3,6 +3,11 @@ const activeViews = {};
 let renderedViewCount = 0;
 const viewTemplate = {};
 
+/**
+ * Defines a view from passed in name and gets the view template from the associated component dir.
+ * @function defineView
+ * @param view View name
+ */
 function defineView(view) {
   // Add view to list of defined views
   views[view.name] = view;
@@ -12,6 +17,15 @@ function defineView(view) {
   );
 }
 
+/**
+ * Renders a defined view into a container. Passes in neccessary, predefined render parameters.
+ * @async
+ * @function renderView
+ * @param viewName View name
+ * @param container Container to render the view within
+ * @param renderOptions Array of view-specific rendering options
+ * @throws Undefined if view is undefined for this context
+ */
 async function renderView(viewName, container, renderOptions = {}) {
   if (typeof views[viewName] === 'undefined')
     throw new Error('This view is not defined');
