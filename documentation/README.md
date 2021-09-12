@@ -26,7 +26,7 @@ in [.pre-commit-config.yaml](../.pre-commit-config.yaml)
 (Optional) Install development dependencies:
 
 ```zsh
-npm i # install development dependencies
+npm i  # install development dependencies
 ```
 
 To start a development server, navigate to the inner `eecs-448-battleship`
@@ -37,7 +37,8 @@ python installed):
 python -m http.server 8000
 ```
 
-Now, navigate to [http://localhost:8000](http://localhost:8000) and start hacking away!
+Now, navigate to [http://localhost:8000](http://localhost:8000) and start
+hacking away!
 
 If you don't have python installed, you can use any one of
 [these static web servers](https://gist.github.com/willurd/5720255)
@@ -55,23 +56,26 @@ folder on a public URL and handle the SSL certificate.
 
 ## Documentation Generation
 
-Documentation can be auto-generated with a tool called **documentation.js**. To install documentation.js globally using npm:
+Documentation can be auto-generated with a tool called **documentation.js**. To
+install documentation.js globally using npm:
 
 ```zsh
 npm install -g documentation
 ```
 
-The generated documentation files will be found under ```docs-gen``` and are compiled to html. This documentation framework follows JSDoc tags - all supported tags and formatting can be found [here](https://jsdoc.app/) on JSDoc's website.
+The generated documentation files will be found under `docs-gen` and are
+compiled to html. This documentation framework follows JSDoc tags - all
+supported tags and formatting can be found [here](https://jsdoc.app/) on JSDoc's
+website.
 
-To generate new documentation recursively for all files within the ```eecs-448-battleship``` directory, start in the root of the repository and run:
+To generate new documentation recursively for all files within the
+`eecs-448-battleship` directory, start in the root of the repository and run:
 
 ```zsh
 documentation build eecs-448-battleship/** -f html -o docs-gen
 ```
 
-Open ```docs-gen/index.html``` in your browser to view the static docs.
-
-
+Open `docs-gen/index.html` in your browser to view the static docs.
 
 ## Works Cited
 
@@ -80,12 +84,10 @@ Open ```docs-gen/index.html``` in your browser to view the static docs.
 
 ## Tech stack
 
-- Next.JS
-- React
-- Tailwind CSS
-- Typescript
-- Babel
-- Webpack
+- JavaScript
+- ESLint
+- Prettier
+- Stylelint
 
 ## Tools Used
 
@@ -95,7 +97,8 @@ Tools used in the process of development
 - pre-commit.com
 - GitHub
 - Vim
-- Documention.js
+- PyCharm
+- Documentation.js
 
 ## Licence
 
