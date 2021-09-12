@@ -4,6 +4,8 @@
 // Later, to render this view, call:
 // new ShipPlacementView(options).render(container)
 class ShipPlacementView extends View {
+  /*
+   * */
   constructor(options) {
     super(options);
 

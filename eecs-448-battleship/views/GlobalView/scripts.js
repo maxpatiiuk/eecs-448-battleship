@@ -1,15 +1,33 @@
 'use strict';
 
 /**
- * Defines a view from passed in name and gets the view template from the
- * associated component dir.
+ * Base class for views
  * @class View
- * @param view View name
+ * @constructor
+ * @public
  */
 class View {
+  /*
+   * View Name
+   * @type string
+   * @public
+   * */
   #name;
+  /*
+   * Total count of rendered views
+   * @type number
+   * @public
+   * */
   static #index = 0;
+  /*
+   * Record<id, view> of currently visible views
+   * @public
+   * */
   static #activeViews = {};
+  /*
+   * Record<viewName, string|Promise<string>> of view templates
+   * @public
+   * */
   static #viewTemplate = {};
   /**
    *
@@ -17,6 +35,8 @@ class View {
    */
   constructor(renderOptions) {
     this.#name = this.constructor.name;
+
+    // Download the template if haven't done so already
     if (!(this.#name in View.#viewTemplate))
       View.#viewTemplate[this.#name] = fetch(
         `./views/${this.#name}/index.html`
@@ -52,5 +72,9 @@ class View {
     newContainer.innerHTML = View.#viewTemplate[this.#name];
     View.#index += 1;
   }
+  /*
+   * Cleanup function
+   * Nothing here yet
+   * */
   remove() {}
 }
