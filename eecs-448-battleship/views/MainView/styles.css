@@ -2,20 +2,20 @@
 
 /*
  * All elements would be housed under a container with the className equal
- * to component name (e.g. .main or .ship-placement)
+ * to component name (e.g. .MainView and .ShipPlacementView)
  */
 
-.main p {
+.MainView p {
   color: var(--t2);
 }
-.main button {
+.MainView button {
   background-color: #e7e7e7;
   color: black;
   border: none;
   padding: 25px;
 }
 
-.main button:hover {
+.MainView button:hover {
   background-color: #e7e7e7a9;
   color: black;
   border: none;

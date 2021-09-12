@@ -28,16 +28,6 @@
   --border-size: 1px;
   --border-radius: 3px;
   --round: 99999px;
-
-  --table-icon-size: calc(var(--size) * 1.25);
-
-  /* Workbench */
-  --default-cell: #66f;
-  --highlighted-row: #07f6;
-  --new-cell: #aaf;
-  --invalid-cell: #faa;
-  --modified-cell: var(--modified);
-  --search-result: #afa;
 }
 
 body {

@@ -2,8 +2,8 @@
 
 /*
  * All elements would be housed under a container with the className equal
- * to component name (e.g. .main or .ship-placement)
+ * to component name (e.g. .MainView and .ShipPlacementView)
  */
 
-.ship-placement {
+.GameBoardView {
 }
