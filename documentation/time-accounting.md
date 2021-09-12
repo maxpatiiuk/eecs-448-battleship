@@ -35,15 +35,15 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
         <tr>
             <td>Deciding on the language & platform</td>
             <td>0.5h</td>
-            <td>0h</td>
-            <td>0h</td>
-            <td>0h</td>
-            <td>0h</td>
+            <td>0.5h</td>
+            <td>0.5h</td>
+            <td>0.5h</td>
+            <td>0.5h</td>
         </tr>
         <tr>
             <td>Creating time schedule and improving documentation</td>
             <td>1h</td>
-            <td>0h</td>
+            <td>0.25h</td>
             <td>0h</td>
             <td>0h</td>
             <td>0h</td>
