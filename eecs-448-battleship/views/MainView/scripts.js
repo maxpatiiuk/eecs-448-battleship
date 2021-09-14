@@ -27,11 +27,18 @@ class MainView extends View {
      * (replace 6 by the actual number of ships selected)
      *
      */
-
+    let listeners = document.getElementsByClassName('ship-btn');
+    for(let i = 0; i < listeners.length; i++) {
+      listeners[i].addEventListener('click', () => new ShipPlacementView({numberOfShips: i}).render(this.container))
+    }
+    
     return this;
   }
   remove() {
     super.remove();
     // TODO: Unset event listeners from buttons (element.removeEventListener)
+    for(let i = 0; i < listeners.length; i++) {
+      listeners[i].removeEventListener('click');
+    }
   }
 }
