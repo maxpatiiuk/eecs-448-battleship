@@ -56,8 +56,6 @@ class View {
     currentView?.remove?.();
     View.#activeViews[currentViewId || ''] = undefined;
 
-    this.container = container;
-
     // Clean view's content
     const id = `${this.#name}-${View.#index}`;
     container.outerHTML = `<div
@@ -65,6 +63,8 @@ class View {
       id="${id}"
     ></div>`;
     const newContainer = document.getElementById(id);
+
+    this.container = newContainer;
 
     if (typeof View.#viewTemplate[this.#name] !== 'string')
       View.#viewTemplate[this.#name] = await View.#viewTemplate[this.#name];
