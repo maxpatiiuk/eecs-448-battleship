@@ -29,7 +29,7 @@ class MainView extends View {
      */
     let listeners = document.getElementsByClassName('ship-btn');
     for(let i = 0; i < listeners.length; i++) {
-      listeners[i].addEventListener('click', () => new ShipPlacementView({numberOfShips: i}).render(this.container))
+      listeners[i].addEventListener('click', () => new ShipPlacementView({numberOfShips: i+1}).render(this.container))
     }
     
     return this;

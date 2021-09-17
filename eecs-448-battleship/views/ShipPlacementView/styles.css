@@ -5,5 +5,34 @@
  * to component name (e.g. .MainView and .ShipPlacementView)
  */
 
-.ShipPlacementView-placement {
+.ShipPlacementView table, th, td {
+    border: 2px solid white;
+}
+
+.ShipPlacementView td {
+    width: 60px;
+    height: 60px;
+}
+
+.ShipPlacementView .ships table {
+    display: table;
+    /* no cell spacing */
+    border-collapse: collapse;
+    float: left;
+}
+
+.ShipPlacementView .ships td.shp-1, td.shp-2, td.shp-3, td.shp-4, td.shp-5, td.shp-6 {
+    background-color: blue;
+}
+
+.ShipPlacementView .board table {
+    display: table;
+    /* no cell spacing */
+    border-collapse: collapse;
+    float: right;
+}
+
+.ShipPlacementView td.axis {
+    text-align: center;
+    background-color: gray;
 }
