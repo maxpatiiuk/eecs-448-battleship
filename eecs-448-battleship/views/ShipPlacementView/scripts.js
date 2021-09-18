@@ -8,6 +8,9 @@ class ShipPlacementView extends View {
    * */
   constructor(options) {
     super(options);
+    this.currentShip = undefined;
+    this.currentShipIndex = undefined;
+    this.orientatioon = 'horizontal';
   }
   async render(
     // Container would be populated with elements from index.html
@@ -16,11 +19,15 @@ class ShipPlacementView extends View {
     await super.render(container);
 
     /* Render the 9x10 grid */
-    this.board = new Board({ rows, cols, tagName: 'section' }).render(
-      this.container.getElementsByClassName('board')[0]
-    );
+    this.board = await new Board({
+      rows,
+      cols,
+      tagName: 'section',
+      onMouseOver: this.handleBoardCellOver.bind(this),
+      onClick: this.handleBoardCellClick.bind(this),
+    }).render(this.container.getElementsByClassName('board')[0]);
 
-    /* TODO: Render between 1 and 6 ships on the sidebar */
+    /* Render between 1 and 6 ships on the sidebar */
     const fleet = this.container.getElementsByClassName('fleet')[0];
     fleet.innerHTML = Array.from({
       length: this.options.numberOfShips,
@@ -38,12 +45,14 @@ class ShipPlacementView extends View {
       )
       .join('\n');
 
+    /* Allow selecting a ship and putting it on the board */
     this.ships = Array.from(fleet.getElementsByTagName('input'));
     this.ships.forEach((input) =>
       input.addEventListener('change', this.handleSelectedShipChange.bind(this))
     );
 
-    /* TODO: allow selecting a ship and putting it on the board*/
+    this.rotateButton = this.container.getElementsByClassName('controls');
+
     /*
      * TODO: once ready, call:
      *  new GameBoard({ board: board }).render(container),
@@ -53,7 +62,18 @@ class ShipPlacementView extends View {
 
     return this;
   }
-  handleSelectedShipChange(selected) {}
+  handleSelectedShipChange({ target }) {
+    this.currentShip = target;
+    const label = target.parentElement;
+    this.currentShipIndex =
+      Array.from(label.parentElement.children).indexOf(label) + 1;
+  }
+  handleBoardCellOver(event) {
+    console.log(event);
+  }
+  handleBoardCellClick(event) {
+    console.log(event);
+  }
   remove() {
     super.remove();
 
