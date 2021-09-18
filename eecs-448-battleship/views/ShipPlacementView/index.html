@@ -1,74 +1,10 @@
-<!-- TODO: Display a 9x10 board and a sidebar that would contain ships -->
-<div class="ships">
-    <table>
-        <tbody>
-            <tr>
-                <td class="shp-1"></td><td></td><td class="shp-4"></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td></td><td></td><td class="shp-4"></td><td></td><td class="shp-6"></td>
-            </tr>
-            <tr>
-                <td class="shp-3"></td><td></td><td class="shp-4"></td><td></td><td class="shp-6"></td>
-            </tr>
-            <tr>
-                <td class="shp-3"></td><td></td><td class="shp-4"></td><td></td><td class="shp-6"></td>
-            </tr>
-            <tr>
-                <td class="shp-3"></td><td></td><td></td><td></td><td class="shp-6"></td>
-            </tr>
-            <tr>
-                <td></td><td></td><td class="shp-5"></td><td></td><td class="shp-6"></td>
-            </tr>
-            <tr>
-                <td class="shp-2"></td><td></td><td class="shp-5"></td><td></td><td class="shp-6"></td>
-            </tr>
-            <tr>
-                <td class="shp-2"></td><td></td><td class="shp-5"></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td></td><td></td><td class="shp-5"></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td></td><td></td><td class="shp-5"></td><td></td><td></td>
-            </tr>
-        </tbody>    
-    </table>
-</div>
-
-<div class="board">
-    <table>
-        <tbody>
-            <tr>
-                <td class="axis">1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis">2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis">3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis">4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis">5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis">6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis">7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis">8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis">9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td class="axis"></td><td class="axis">A</td><td class="axis">B</td><td class="axis">C</td><td class="axis">D</td><td class="axis">E</td><td class="axis">F</td><td class="axis">G</td><td class="axis">H</td><td class="axis">I</td><td class="axis">J</td>
-            </tr>
-        </tbody>    
-    </table>
-</div>
+<!-- Display a 9x10 board and a sidebar that would contain ships -->
+<aside class="controls">
+  <p>Place all ships on the board:</p>
+  <span class="fleet"></span>
+  <menu>
+    <button class="rotate magic-button" type="button">Rotate ship</button>
+    <button class="finish magic-button" type="button">Start game</button>
+  </menu>
+</aside>
+<div class="board"></div>

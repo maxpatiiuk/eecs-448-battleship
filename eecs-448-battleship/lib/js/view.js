@@ -29,17 +29,24 @@ class View {
    * @public
    * */
   static #viewTemplate = {};
+  /*
+   * Static template directory
+   * */
   /**
    *
-   * @param renderOptions Object with view-specific rendering options
+   * @param options Object with view-specific rendering options
    */
-  constructor(renderOptions) {
+  constructor({ templateDirectory = 'views', ...options } = {}) {
     this.#name = this.constructor.name;
+    this.options = {
+      tagName: 'div',
+      ...options,
+    };
 
     // Download the template if haven't done so already
     if (!(this.#name in View.#viewTemplate))
       View.#viewTemplate[this.#name] = fetch(
-        `./views/${this.#name}/index.html`
+        `./${templateDirectory}/${this.#name}/index.html`
       ).then(async (response) => response.text());
   }
   /**
@@ -58,10 +65,10 @@ class View {
 
     // Clean view's content
     const id = `${this.#name}-${View.#index}`;
-    container.outerHTML = `<div
+    container.outerHTML = `<${this.options.tagName}
       class="${this.#name}"
       id="${id}"
-    ></div>`;
+    ></${this.options.tagName}>`;
     const newContainer = document.getElementById(id);
 
     this.container = newContainer;

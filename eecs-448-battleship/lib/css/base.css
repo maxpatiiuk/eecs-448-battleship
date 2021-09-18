@@ -40,26 +40,38 @@ body {
   color: var(--t1);
 }
 
-#root {
-  display: flex;
-  justify-content: center;
-  height: calc(100vh - var(--double-size) * 2);
-  padding: var(--double-size);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#root > div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+p {
+  color: var(--t2);
 }
 
-#root > div > h1 {
-  font-size: calc(var(--double-size) * 2);
+.magic-button {
+  background: var(--b3);
+  border: var(--border-size) solid var(--b4);
+  padding: var(--quarter-size);
+  border-radius: var(--border-radius);
+  font-weight: 400;
+  color: var(--t2);
+  transition: background var(--animation-duration) ease,
+    border var(--animation-duration) ease;
+  cursor: pointer;
 }
 
-/*#root #container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-}*/
+.magic-button:hover {
+  background: var(--b2);
+}
+
+.magic-button:active {
+  background: var(--b1);
+}
+
+.magic-button[disabled] {
+  cursor: no-drop;
+  background: var(--b4);
+  color: var(--t4);
+}

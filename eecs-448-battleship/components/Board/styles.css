@@ -1,0 +1,73 @@
+.Board {
+  --cols: 10;
+  --b-board-start: #a78bfa;
+  --b-board-end: #fbbf24;
+  background-image: linear-gradient(
+    to top right,
+    var(--b-board-end),
+    var(--b-board-start, rgba(251, 191, 36, 0))
+  );
+}
+
+/* Reset user-agent table styles
+ * Copied from:
+ * https://stackoverflow.com/questions/13076227/css-reset-table-to-default-equivalent/27851231
+ */
+.Board table,
+.Board thead,
+.Board tbody,
+.Board tfoot,
+.Board tr,
+.Board th,
+.Board td {
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-align: left;
+  -webkit-border-horizontal-spacing: 0;
+  -webkit-border-vertical-spacing: 0;
+}
+
+th,
+td {
+  display: inline;
+}
+
+.Board table {
+  display: grid;
+  grid-template-columns: repeat(calc(var(--cols) + 1), minmax(0, 1fr));
+  grid-gap: calc(var(--quarter-size) / 2);
+  border: none;
+  padding: var(--half-size);
+}
+
+.Board thead,
+.Board tbody,
+.Board tr {
+  display: contents;
+}
+
+.Board th,
+.Board td {
+  width: var(--double-size);
+  height: var(--double-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Board th {
+  background: var(--b2);
+}
+
+.Board td {
+  background: var(--b1);
+  cursor: pointer;
+}
+
+.Board td.occupied {
+  cursor: inherit;
+}
