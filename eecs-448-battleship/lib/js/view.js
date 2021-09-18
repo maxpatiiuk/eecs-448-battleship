@@ -4,7 +4,8 @@
  * Base class for views
  * @class View
  * @constructor
- * @param {options}
+ * @param {options} options
+ * @param templateDirectory
  * @public
  */
 class View {

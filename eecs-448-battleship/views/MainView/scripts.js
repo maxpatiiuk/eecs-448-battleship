@@ -2,6 +2,14 @@
 
 // The name of this view
 // Later, to render this view, call new MainView(options).render(this.container)
+/**
+ * Base MainView class
+ * @class MainView
+ * @constructor
+ * @param options
+ * @extends View
+ * @public
+ */
 class MainView extends View {
   constructor(options) {
     super(options);

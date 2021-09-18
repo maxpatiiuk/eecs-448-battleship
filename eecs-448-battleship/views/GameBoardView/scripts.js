@@ -3,11 +3,27 @@
 // The name of this view
 // Later, to render this view, call:
 // new GameBoardView(options).render(this.container)
+/**
+ * Base Gameboard class
+ * @class GameBoardView
+ * @constructor
+ * @param options
+ * @extends View
+ * @public
+ */
 class GameBoardView extends View {
   constructor(options) {
     super(options);
   }
-
+  
+  /**
+   * Renders a defined view into a container. Passes in necessary, predefined
+   * render parameters.
+   * @async
+   * @function render
+   * @memberof GameBoardView
+   * @param container Container to render the view within
+   */
   async render(
     // Container would be populated with elements from index.html
     container
@@ -39,15 +55,13 @@ class GameBoardView extends View {
         }
       }
     }
-  
 
     /* This is suppose to create the scoreboard */
-
     return this;
   }
 
   scoreBoard() {
-   var playerOneScore = 0;
+    var playerOneScore = 0;
     var playerTwoScore = 0;
     this.buttonOne = this.container.getElementsByTagName('button')[0];
     this.Onclick = playerOneScore + 1;
@@ -55,13 +69,24 @@ class GameBoardView extends View {
     this.buttonTwo = this.container.getElementsByTagName('button')[1];
     this.Onclick = console.log(playerOneScore);
     this.buttonTwo.addEventListener("click", this.Onclick);
-
-
   }
 
+  /**
+   * Board hovering event log
+   * @function handleBoardHover
+   * @memberof GameBoardView
+   * @param event event to log
+   */
   handleBoardOver(event) {
     console.log(event);
   }
+
+  /**
+   * Board hovering event log
+   * @function handleBoardClick
+   * @memberof GameBoardView
+   * @param event event to log
+   */
   handleBoardClick(event) {
     console.log(event);
   }
