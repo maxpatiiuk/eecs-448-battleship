@@ -34,7 +34,7 @@ const generateBoard = ({ rows, cols }) => `<table>
 
 // The name of this component
 // Later, to render this component, call:
-// new Board(options).render(container)
+// new Board(options).render(this.container)
 class Board extends Component {
   static #eventListeners = {
     onMouseOver: 'mouseover',
@@ -52,17 +52,29 @@ class Board extends Component {
     await super.render(container);
 
     this.container.innerHTML = generateBoard(this.options);
+    this.cells = Array.from(
+      this.container.getElementsByTagName('tbody')[0].getElementsByTagName('tr')
+    ).map((row) => Array.from(row.getElementsByTagName('td')));
     this.container.style.setProperty('--cols', this.options.cols);
 
     // Set event listeners
     Object.entries(Board.#eventListeners)
       .filter(([optionName]) => typeof this.options[optionName] === 'function')
       .forEach(([optionName, eventName]) => {
-        this.#events[optionName] = (event) =>
+        this.#events[optionName] = ({ target }) => {
           // Only run event callbacks for buttons
-          event.target.tagName === 'BUTTON'
-            ? this.options[optionName](event)
-            : undefined;
+          if (target.tagName !== 'BUTTON') return;
+
+          const cell = target.parentElement;
+          const col = getElementIndex(cell) - 1;
+          const row = getElementIndex(cell.parentElement);
+          this.options[optionName]({
+            cell,
+            col,
+            row,
+            eventName,
+          });
+        };
         this.container.addEventListener(eventName, this.#events[optionName]);
       });
 

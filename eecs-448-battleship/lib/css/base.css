@@ -8,7 +8,7 @@
   --t3: #bbb;
   --t4: #999;
   --border: #555;
-  --darken: #000c;
+  --darken: #0009;
 
   --success: #2c0;
   --error: #f24;
@@ -18,7 +18,7 @@
   --accent: #f73;
   --accent-pale: #f94;
 
-  --animation-duration: 2s;
+  --animation-duration: 0.2s;
 
   --quarter-size: 0.25rem;
   --half-size: 0.5rem;
@@ -28,6 +28,12 @@
   --border-size: 1px;
   --border-radius: 3px;
   --round: 99999px;
+}
+
+@media (prefers-reduced-motion) {
+  :root {
+    --animation-duration: 0;
+  }
 }
 
 body {
@@ -73,12 +79,24 @@ p {
   cursor: pointer;
 }
 
-.magic-button:hover {
+.magic-button:hover,
+.magic-button[aria-pressed='true'] {
   background: var(--b2);
 }
 
-.magic-button:active {
+.magic-button:active,
+.magic-button[aria-pressed='true']:hover {
   background: var(--b1);
+}
+
+.magic-button[aria-pressed='true']:active,
+.magic-button[disabled] {
+  background: var(--b3);
+  color: var(--t4);
+}
+
+.magic-button[disabled] {
+  cursor: no-drop;
 }
 
 .magic-button[disabled] {

@@ -1,7 +1,7 @@
 'use strict';
 
 // The name of this view
-// Later, to render this view, call new MainView(options).render(container)
+// Later, to render this view, call new MainView(options).render(this.container)
 class MainView extends View {
   constructor(options) {
     super(options);

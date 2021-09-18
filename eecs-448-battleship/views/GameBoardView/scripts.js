@@ -2,7 +2,7 @@
 
 // The name of this view
 // Later, to render this view, call:
-// new GameBoardView(options).render(container)
+// new GameBoardView(options).render(this.container)
 class GameBoardView extends View {
   constructor(options) {
     super(options);
@@ -17,7 +17,7 @@ class GameBoardView extends View {
     /* TODO: Render the 9x10 grid */
     /*
      * TODO: once game is finished, call:
-     *   new GameOverView({win: true}).render(container)
+     *   new GameOverView({win: true}).render(this.container)
      *   (where win is true, if player won, else false)
      */
 

@@ -68,8 +68,13 @@ td {
   cursor: pointer;
 }
 
-.Board td.occupied {
+.Board td.ship {
   cursor: inherit;
+  background: transparent;
+}
+
+.Board td.shadow {
+  background: var(--darken);
 }
 
 .Board td button {
