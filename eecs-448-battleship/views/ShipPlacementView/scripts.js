@@ -21,6 +21,28 @@ class ShipPlacementView extends View {
     );
 
     /* TODO: Render between 1 and 6 ships on the sidebar */
+    const fleet = this.container.getElementsByClassName('fleet')[0];
+    fleet.innerHTML = Array.from({
+      length: this.options.numberOfShips,
+    })
+      .map(
+        (_, index) => `<label>
+        <input type="radio" class="sr-only" name="ship">
+        <span class="ship" aria-hidden="true">
+          ${Array.from({ length: index + 1 })
+            .fill('<span></span>')
+            .join('\n')}
+        </span>
+        <p class="sr-only">Ship ${index + 1}</p>
+      </label>`
+      )
+      .join('\n');
+
+    this.ships = Array.from(fleet.getElementsByTagName('input'));
+    this.ships.forEach((input) =>
+      input.addEventListener('change', this.handleSelectedShipChange.bind(this))
+    );
+
     /* TODO: allow selecting a ship and putting it on the board*/
     /*
      * TODO: once ready, call:
@@ -31,8 +53,16 @@ class ShipPlacementView extends View {
 
     return this;
   }
+  handleSelectedShipChange(selected) {}
   remove() {
     super.remove();
-    /* TODO: Remove click event listeners (event.removeEventListener) */
+
+    /* Remove event listeners (event.removeEventListener) */
+    this.ships.forEach((input) =>
+      input.removeEventListener(
+        'change',
+        this.handleSelectedShipChange.bind(this)
+      )
+    );
   }
 }

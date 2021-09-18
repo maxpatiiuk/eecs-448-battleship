@@ -50,6 +50,17 @@ p {
   color: var(--t2);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 .magic-button {
   background: var(--b3);
   border: var(--border-size) solid var(--b4);

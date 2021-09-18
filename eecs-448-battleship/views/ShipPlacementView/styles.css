@@ -15,6 +15,41 @@
 
 .ShipPlacementView .fleet {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--half-size);
+}
+
+.ShipPlacementView .fleet label {
+  display: contents;
+}
+
+.ShipPlacementView .fleet .ship {
+  display: flex;
+  cursor: pointer;
+}
+
+.ShipPlacementView .fleet input:checked ~ .ship {
+  cursor: initial;
+}
+
+.ShipPlacementView .fleet input[disabled] ~ .ship {
+  cursor: not-allowed;
+}
+
+.ShipPlacementView .fleet .ship span {
+  width: var(--double-size);
+  height: var(--double-size);
+  background: var(--b3);
+  border: var(--border-size) solid var(--b1);
+}
+
+.ShipPlacementView .fleet input:checked ~ .ship span {
+  background: var(--t3);
+}
+
+.ShipPlacementView .fleet input[disabled] ~ .ship span {
+  background: var(--b2);
 }
 
 .ShipPlacementView menu {

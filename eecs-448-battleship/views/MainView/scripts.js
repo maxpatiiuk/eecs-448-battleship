@@ -28,7 +28,7 @@ class MainView extends View {
     return this;
   }
 
-  handleClick(button) {
+  handleClick({ target: button }) {
     // Once a button is clicked, render ship placement view
     new ShipPlacementView({
       numberOfShips: Number.parseInt(button.textContent),
