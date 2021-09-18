@@ -1,0 +1,27 @@
+#root {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - var(--double-size) * 2);
+  padding: var(--double-size);
+}
+
+#root > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#root > div > h1 {
+  font-size: calc(var(--double-size) * 2);
+  flex: 1;
+}
+
+#root > div > span {
+  flex: 1;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

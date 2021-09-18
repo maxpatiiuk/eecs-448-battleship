@@ -40,6 +40,12 @@ body {
   color: var(--t1);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 p {
   color: var(--t2);
 }
@@ -68,32 +74,4 @@ p {
   cursor: no-drop;
   background: var(--b4);
   color: var(--t4);
-}
-
-#root {
-  display: flex;
-  justify-content: center;
-  height: calc(100vh - var(--double-size) * 2);
-  padding: var(--double-size);
-}
-
-#root > div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-#root > div > h1 {
-  font-size: calc(var(--double-size) * 2);
-  flex: 1;
-}
-
-#root > div > span {
-  flex: 1;
-}
-
-#container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }

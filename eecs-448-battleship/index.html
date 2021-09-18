@@ -29,7 +29,9 @@
       sizes="16x16"
       href="/icons/favicon-16x16.png"
     />
-    <link rel="stylesheet" href="views/GlobalView/styles.css" />
+    <link rel="stylesheet" href="lib/css/base.css" />
+    <link rel="stylesheet" href="lib/css/main.css" />
+    <link rel="stylesheet" href="components/Board/styles.css" />
     <link rel="stylesheet" href="views/MainView/styles.css" />
     <link rel="stylesheet" href="views/ShipPlacementView/styles.css" />
     <link rel="stylesheet" href="views/GameBoardView/styles.css" />
@@ -43,19 +45,25 @@
     <div id="root">
       <div>
         <h1>Battleship</h1>
-        <div id="container">
+        <main>
           <div></div>
-        </div>
+        </main>
         <span></span>
       </div>
     </div>
-    <script src="views/GlobalView/scripts.js"></script>
+    <script src="lib/js/config.js"></script>
+    <script src="lib/js/view.js"></script>
+    <script src="lib/js/component.js"></script>
+    <script src="lib/js/utils.js"></script>
+    <script src="components/Board/scripts.js"></script>
     <script src="views/MainView/scripts.js"></script>
     <script src="views/ShipPlacementView/scripts.js"></script>
     <script src="views/GameBoardView/scripts.js"></script>
     <script src="views/GameOverView/scripts.js"></script>
     <script>
-      new MainView().render(document.getElementById('container').children[0]);
+      new MainView().render(
+        document.getElementsByTagName('main')[0].children[0]
+      );
     </script>
   </body>
 </html>
