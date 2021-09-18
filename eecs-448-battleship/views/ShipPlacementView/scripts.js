@@ -110,13 +110,17 @@ class ShipPlacementView extends View {
     );
 
     this.handleBoardCellOut();
-    if (this.isValidPlacement)
-      this.shipShadow.forEach(([row, col]) =>
-        this.board.cells[row][col].classList.add('shadow')
-      );
+    this.shipShadow.forEach(([row, col]) =>
+      this.board.cells[row]?.[col]?.classList.add(
+        this.isValidPlacement ? 'shadow' : 'invalid'
+      )
+    );
   }
   handleBoardCellOut() {
-    this.board.cells.flat().map((cell) => cell.classList.remove('shadow'));
+    this.board.cells.flat().map((cell) => {
+      cell.classList.remove('shadow');
+      cell.classList.remove('invalid');
+    });
   }
   handleBoardCellClick(event) {
     if (!this.isValidPlacement) return;
@@ -125,6 +129,7 @@ class ShipPlacementView extends View {
     this.handleBoardCellOut();
     this.shipShadow.forEach(([row, col]) => {
       this.board.cells[row][col].classList.remove('shadow');
+      this.board.cells[row][col].classList.remove('invalid');
       this.board.cells[row][col].classList.add('ship');
     });
     console.log(event);
