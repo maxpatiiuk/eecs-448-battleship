@@ -22,6 +22,7 @@ class GameBoardView extends View {
      */
 
     /* Render the 9x10 grid */
+    console.log(this.options);
     this.board = await new Board({
       rows,
       cols,
@@ -29,15 +30,33 @@ class GameBoardView extends View {
       onMouseOver: this.handleBoardOver.bind(this),
       onClick: this.handleBoardClick.bind(this),
     }).render(this.container.getElementsByClassName('game-board')[0]);
+    for(var i = 0; i < rows; i ++) {
+      for(var j = 0; j < cols; j ++){
+        if(this.options.board[i][j] == true)
+        {
+          this.board.cells[i][j].classList.add("ship");
+
+        }
+      }
+    }
+  
 
     /* This is suppose to create the scoreboard */
-    var playerOneScore = 0;
-    var playerTwoScore = 0;
-    this.button = this.container.getElementsByTagName('button')[0];
-    this.Onclick = ()=> playerOneScore + 1;
-    this.button.addEventListener("click", this.Onclick);
 
     return this;
+  }
+
+  scoreBoard() {
+   var playerOneScore = 0;
+    var playerTwoScore = 0;
+    this.buttonOne = this.container.getElementsByTagName('button')[0];
+    this.Onclick = playerOneScore + 1;
+    this.buttonOne.addEventListener("click", this.Onclick);
+    this.buttonTwo = this.container.getElementsByTagName('button')[1];
+    this.Onclick = console.log(playerOneScore);
+    this.buttonTwo.addEventListener("click", this.Onclick);
+
+
   }
 
   handleBoardOver(event) {

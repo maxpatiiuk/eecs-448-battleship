@@ -133,11 +133,11 @@ class ShipPlacementView extends View {
     this.finishButton.disabled &&= !this.ships.every((input) => input.disabled);
   }
   handleFinishPlacement() {
-    new GameBoardView(
-      this.board.cells.map((row) =>
+    new GameBoardView({
+      board: this.board.cells.map((row) =>
         row.map((cell) => cell.classList.contains('ship'))
       )
-    ).render(this.container);
+    }).render(this.container);
   }
   remove() {
     super.remove();
