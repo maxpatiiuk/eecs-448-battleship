@@ -13,7 +13,7 @@ complete.
     </thead>
     <tbody>
         <tr>
-            <th rowspan=4>Planning</th>
+            <th rowspan=5>Planning</th>
             <td>Team meetings</td>
             <td>4h</td>
         </tr>
@@ -34,7 +34,7 @@ complete.
             <td>0.5h</td>
         </tr>
         <tr>
-            <th rowspan=5>Implementation</th>
+            <th rowspan=4>Implementation</th>
             <td>Developing Game Setup Screen</td>
             <td>2h</td>
         </tr>
@@ -66,7 +66,7 @@ complete.
             <td>0.5h</td>
         </tr>
         <tr>
-            <th rowspan=1>Testing and Maintenance</th>
+            <th rowspan=2>Testing and Maintenance</th>
             <td>General testing</td>
             <td>1h</td>
         </tr>
