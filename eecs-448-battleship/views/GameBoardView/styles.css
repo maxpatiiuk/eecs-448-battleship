@@ -1,31 +1,10 @@
-<<<<<<< HEAD
-/* TODO: add styles */
-
-/*
- * All elements would be housed under a container with the className equal
- * to component name (e.g. .MainView and .ShipPlacementView)
- */
-
-.GameBoardView .game-board {
-    /* display: grid;
-    grid-template-columns: ;
-    grid-template-rows: ; */
-    width: 1020px;
-    border: 1px solid black;
+.GameBoardView {
+    display: flex;
 }
 
-.GameBoardView .side-board {
-    display: grid;
-    width: 200px;
-    height: 150px;
-    border: 2px solid black;
-}
+.GameBoardView button {
 
-.space {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    display:inline-block;
+    width: 70px;
+    height: 30px;
+
 }
-=======
->>>>>>> 2d2a6b5942dd88420af6835696c8c7b38ae662c8

@@ -21,18 +21,30 @@ class GameBoardView extends View {
      *   (where win is true, if player won, else false)
      */
 
-    const board = document.getElementsByClassName('game-board')[0];
-    for (let rows = 1; rows <= 9; rows++) {
-      for (let cols = 1; cols <= 10; cols++) {
-        var boardElement = document.createElement('div');
-        boardElement.setAttribute('row', rows);
-        boardElement.setAttribute('col', cols);
-        boardElement.setAttribute('class', 'space');
-        board.appendChild(boardElement);
-      }
-    }
+    /* Render the 9x10 grid */
+    this.board = await new Board({
+      rows,
+      cols,
+      tagName: 'section',
+      onMouseOver: this.handleBoardOver.bind(this),
+      onClick: this.handleBoardClick.bind(this),
+    }).render(this.container.getElementsByClassName('game-board')[0]);
+
+    /* This is suppose to create the scoreboard */
+    var playerOneScore = 0;
+    var playerTwoScore = 0;
+    this.button = this.container.getElementsByTagName('button')[0];
+    this.Onclick = ()=> playerOneScore + 1;
+    this.button.addEventListener("click", this.Onclick);
 
     return this;
+  }
+
+  handleBoardOver(event) {
+    console.log(event);
+  }
+  handleBoardClick(event) {
+    console.log(event);
   }
 
   remove() {

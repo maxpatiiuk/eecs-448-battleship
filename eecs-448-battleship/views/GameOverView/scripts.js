@@ -13,13 +13,10 @@ class GameOverView extends View {
     container
   ) {
     await super.render(container);
-    /* TODO: Display the appropriate lose/win message */
-    /* TODO: Listen for "Play again" button click */
-    /* TODO: Once button is clicked, call:
-    new MainView().render(this.container) */
+    /*Display the appropriate lose/win message */
+     this.container.getElementsByTagName('p')[0].textContent = this.options.win ? "You Win" : "You Lose";
 
-    this.container.getElementsByTagName('p')[0].textContent = this.options.win ? "You Win" : "You Lose";
-
+    /*Listen for "Play again" button click, Once button is clicked, call: new MainView().render(this.container) */
     this.button = this.container.getElementsByTagName('button')[0];
     this.Onclick = ()=>new MainView().render(this.container);
     this.button.addEventListener("click", this.Onclick);
