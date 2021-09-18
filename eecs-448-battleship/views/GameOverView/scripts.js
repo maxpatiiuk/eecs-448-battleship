@@ -14,37 +14,38 @@
 class GameOverView extends View {
   constructor(options) {
     super(options);
-  }  
-  
-/**
-  * Renders a defined view into a container. Passes in necessary, predefined
-  * render parameters.
-  * @async
-  * @function render
-  * @memberof GameBoardView
-  * @param container Container to render the view within
-  */
+  }
+
+  /**
+   * Renders a defined view into a container. Passes in necessary, predefined
+   * render parameters.
+   * @async
+   * @function render
+   * @memberof GameBoardView
+   * @param container Container to render the view within
+   */
   async render(
     // Container would be populated with elements from index.html
     container
   ) {
     await super.render(container);
     /* Display the appropriate lose/win message */
-    this.container.getElementsByTagName('p')[0].textContent = this.options.win ? "You Win" : "You Lose";
+    this.container.getElementsByTagName('p')[0].textContent = this.options.win
+      ? 'You Won!'
+      : 'You Lost.';
 
-    /* Listen for "Play again" button click, Once button is clicked, call: new MainView().render(this.container) */
+    /* Listen for "Play again" button click, Once button is clicked,call:
+       new MainView().render(this.container) */
     this.button = this.container.getElementsByTagName('button')[0];
-    this.Onclick = () => new MainView().render(this.container);
-    this.button.addEventListener("click", this.Onclick);
+    this.onPlayAgain = () => new MainView().render(this.container);
+    this.button.addEventListener('click', this.onPlayAgain);
 
     return this;
   }
 
   remove() {
     super.remove();
-    /* TODO: Remove cl
-    ick event listeners (event.removeEventListener) */
-    this.button.removeEventListener("click", this.Onclick);
-
+    /* TODO: Remove click event listeners (event.removeEventListener) */
+    this.button.removeEventListener('click', this.onPlayAgain);
   }
 }

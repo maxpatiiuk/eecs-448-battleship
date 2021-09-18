@@ -1,18 +1,12 @@
-/* TODO: add styles */
-
 /*
  * All elements would be housed under a container with the className equal
  * to component name (e.g. .MainView and .ShipPlacementView)
  */
 
-.GameOverView   p {
-      text-align: center;
-      font-size: 500%;
-    }
-  
-.GameOverView button {
-
-  font-size: 25%;
+.GameOverView {
+  display: inline-flex;
+  flex-direction: column;
+  row-gap: var(--double-size);
+  align-items: center;
+  font-size: calc(var(--double-size) * 2);
 }
-    
-  
