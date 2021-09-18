@@ -4,6 +4,7 @@
  * Base class for components
  * @class Component
  * @constructor
+ * @param {renderOptions}
  * @public
  */
 class Component extends View {
