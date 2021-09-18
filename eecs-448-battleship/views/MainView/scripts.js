@@ -12,33 +12,35 @@ class MainView extends View {
      *
      */
   }
+
   async render(
     // Container would be populated with elements from index.html
     container
   ) {
     await super.render(container);
 
-    /*
-     * TODO: Listen for button clicks inside our container
-     * (element.addEventListener)
-     *
-     * Once a button is clicked, call:
-     * new ShipPlacementView({numberOfShips: 6}).render(this.container)
-     * (replace 6 by the actual number of ships selected)
-     *
-     */
-    let listeners = document.getElementsByClassName('ship-btn');
-    for(let i = 0; i < listeners.length; i++) {
-      listeners[i].addEventListener('click', () => new ShipPlacementView({numberOfShips: i+1}).render(this.container))
-    }
-    
+    // Listen for button clicks inside the container
+    this.buttons = Array.from(this.container.getElementsByTagName('button'));
+    this.buttons.forEach((button) =>
+      button.addEventListener('click', this.handleClick.bind(this))
+    );
+
     return this;
   }
+
+  handleClick(button) {
+    // Once a button is clicked, render ship placement view
+    new ShipPlacementView({
+      numberOfShips: Number.parseInt(button.textContent),
+    }).render(this.container);
+  }
+
   remove() {
     super.remove();
-    // TODO: Unset event listeners from buttons (element.removeEventListener)
-    for(let i = 0; i < listeners.length; i++) {
-      listeners[i].removeEventListener('click');
-    }
+
+    // Unset event listeners from buttons
+    this.buttons.forEach((button) =>
+      button.removeEventListener('click', this.handleClick)
+    );
   }
 }

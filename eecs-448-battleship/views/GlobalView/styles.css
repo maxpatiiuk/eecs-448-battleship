@@ -40,6 +40,36 @@ body {
   color: var(--t1);
 }
 
+p {
+  color: var(--t2);
+}
+
+.magic-button {
+  background: var(--b3);
+  border: var(--border-size) solid var(--b4);
+  padding: var(--quarter-size);
+  border-radius: var(--border-radius);
+  font-weight: 400;
+  color: var(--t2);
+  transition: background var(--animation-duration) ease,
+    border var(--animation-duration) ease;
+  cursor: pointer;
+}
+
+.magic-button:hover {
+  background: var(--b2);
+}
+
+.magic-button:active {
+  background: var(--b1);
+}
+
+.magic-button[disabled] {
+  cursor: no-drop;
+  background: var(--b4);
+  color: var(--t4);
+}
+
 #root {
   display: flex;
   justify-content: center;
@@ -55,11 +85,15 @@ body {
 
 #root > div > h1 {
   font-size: calc(var(--double-size) * 2);
+  flex: 1;
 }
 
-/*#root #container {
+#root > div > span {
+  flex: 1;
+}
+
+#container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 1;
-}*/
+}
