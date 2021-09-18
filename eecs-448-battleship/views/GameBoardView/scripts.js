@@ -6,15 +6,6 @@
 class GameBoardView extends View {
   constructor(options) {
     super(options);
-
-    const {
-      /*
-       * A 9x10 array of booleans (if cell is true, then there is ship at that
-       * cell)
-       *
-       */
-      board,
-    } = options;
   }
 
   async render(
@@ -22,37 +13,27 @@ class GameBoardView extends View {
     container
   ) {
     await super.render(container);
-    
-    
+
     /* TODO: Render the 9x10 grid */
     /*
      * TODO: once game is finished, call:
      *   new GameOverView({win: true}).render(container)
      *   (where win is true, if player won, else false)
      */
-    
+
+    const board = document.getElementsByClassName('game-board')[0];
+    for (let rows = 1; rows <= 9; rows++) {
+      for (let cols = 1; cols <= 10; cols++) {
+        var boardElement = document.createElement('div');
+        boardElement.setAttribute('row', rows);
+        boardElement.setAttribute('col', cols);
+        boardElement.setAttribute('class', 'space');
+        board.appendChild(boardElement);
+      }
+    }
+
     return this;
   }
-
-  async load()
-  {
-    document.addEventListener("DOMContentLoaded", () => {
-      board = document.getElementsByClassName("game-board")[0];
-      for(let rows = 1; rows <= 9; rows++)
-        {
-          for(let cols = 1; cols <= 10; cols++)
-          {
-            var boardElement = document.createElement("div");
-            boardElement.setAttribute("row", rows);
-            boardElement.setAttribute("col", cols);
-            boardElement.setAttribute("class", "space");
-            board.appendChild(boardElement);
-          }
-        }
-    });
-  }
-
-
 
   remove() {
     super.remove();
