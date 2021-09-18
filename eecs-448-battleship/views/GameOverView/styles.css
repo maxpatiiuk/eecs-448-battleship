@@ -5,5 +5,15 @@
  * to component name (e.g. .MainView and .ShipPlacementView)
  */
 
-.GameOverView {
-}
+ .GameOVerView body {
+    background-color: powderblue;
+  }
+  .GameOVerView   p {
+      text-align: center;
+      font-size: 1000%;
+    }
+    
+    .GameOverView button{
+  
+  
+    }
