@@ -39,12 +39,11 @@ class Fleet extends Component {
       .join('\n');
 
     /* Allow selecting a ship */
-    if (canSelectShip) {
-      this.ships = Array.from(this.container.getElementsByTagName('input'));
+    this.ships = Array.from(this.container.getElementsByTagName('input'));
+    if (canSelectShip)
       this.ships.forEach((input) =>
         input.addEventListener('change', this.options.onChange)
       );
-    }
 
     return this;
   }

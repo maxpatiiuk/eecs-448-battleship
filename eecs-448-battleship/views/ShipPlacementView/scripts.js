@@ -73,17 +73,7 @@ class ShipPlacementView extends View {
     this.isValidPlacement = this.shipShadow.every(
       ([row, col]) =>
         typeof this.board.cells[row]?.[col] !== 'undefined' &&
-        [
-          [row, col - 1],
-          [row, col],
-          [row, col + 1],
-          [row - 1, col - 1],
-          [row - 1, col],
-          [row - 1, col + 1],
-          [row + 1, col - 1],
-          [row + 1, col],
-          [row + 1, col + 1],
-        ].every(
+        getAllNeighbourCells(row, col).every(
           ([row, col]) =>
             this.board.cells[row]?.[col]?.classList.contains('ship') !== true
         )

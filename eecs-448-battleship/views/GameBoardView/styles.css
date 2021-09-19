@@ -51,12 +51,15 @@
   cursor: not-allowed !important;
 }
 
-.GameBoardView .Board button {
+.GameBoardView .Board button,
+.GameBoardView .Fleet .ship span {
   position: relative;
 }
 
 .GameBoardView .Board button[disabled]:before,
-.GameBoardView .Board button[disabled]:after {
+.GameBoardView .Board button[disabled]:after,
+.GameBoardView .Fleet input[disabled] ~ .ship span:before,
+.GameBoardView .Fleet input[disabled] ~ .ship span:after {
   content: '';
   position: absolute;
   background: var(--error);
@@ -66,11 +69,13 @@
   left: calc(var(--size) * 0.9);
 }
 
-.GameBoardView .Board button:before {
+.GameBoardView .Board button:before,
+.GameBoardView .Fleet input[disabled] ~ .ship span:before {
   transform: rotate(45deg);
 }
 
-.GameBoardView .Board button:after {
+.GameBoardView .Board button:after,
+.GameBoardView .Fleet input[disabled] ~ .ship span:after {
   transform: rotate(-45deg);
 }
 

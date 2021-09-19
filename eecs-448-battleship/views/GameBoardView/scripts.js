@@ -123,8 +123,79 @@ class GameBoardView extends View {
     );
   }
 
+  findShip(row, col) {
+    const neighborCell = getNeighbourCells(row, col).find(([row, col]) =>
+      this.opponentBoard.cells[row]?.[col]?.classList.contains('ship')
+    );
+
+    const isHorizontal = neighborCell?.[0] === row;
+    const shipStart = Array.from({ length: Math.max(rows, cols) }, (_, index) =>
+      isHorizontal ? [row, col - index] : [row - index, col]
+    ).find(
+      ([row, col]) =>
+        this.opponentBoard.cells[row]?.[col]?.classList.contains('ship') !==
+        true
+    );
+    const shipEnd = Array.from({ length: Math.max(rows, cols) }, (_, index) =>
+      isHorizontal ? [row, col + index] : [row + index, col]
+    ).find(
+      ([row, col]) =>
+        this.opponentBoard.cells[row]?.[col]?.classList.contains('ship') !==
+        true
+    );
+
+    const horizontalIndex = isHorizontal ? 1 : 0;
+    const ship = Array.from(
+      { length: shipEnd[horizontalIndex] - shipStart[horizontalIndex] + 1 },
+      (_, index) =>
+        isHorizontal ? [row, shipStart[1] + index] : [shipStart[0] + index, col]
+    );
+    const trimmedShip = ship.slice(1, -1);
+
+    const largestShip =
+      this.fleet.ships.length -
+      Array.from(this.fleet.ships)
+        .reverse()
+        .findIndex((ship) => !ship.disabled);
+
+    let canAddBorder;
+    if (typeof neighborCell === 'undefined')
+      canAddBorder = getNeighbourCells(row, col).every(
+        ([row, col]) =>
+          this.opponentBoard.cells[row]?.[col]?.children[0].disabled !== false
+      );
+    else
+      canAddBorder =
+        trimmedShip.length === largestShip ||
+        (this.opponentBoard.cells[shipStart[0]]?.[shipStart[1]]?.children[0]
+          .disabled !== false &&
+          this.opponentBoard.cells[shipEnd[0]]?.[shipEnd[1]]?.children[0]
+            .disabled !== false);
+
+    if (canAddBorder) {
+      trimmedShip
+        .flatMap(([row, col]) => getAllNeighbourCells(row, col))
+        .forEach(([row, col]) => {
+          if (typeof this.opponentBoard.cells[row][col] !== 'undefined')
+            this.opponentBoard.cells[row][col].children[0].disabled = true;
+        });
+      this.fleet.ships[trimmedShip.length - 1].disabled = true;
+    }
+
+    return ship;
+  }
+
   addBorder() {
-    // TODO: draw a hit area over a sunk enemy ship
+    const passedCells = new Set();
+    this.opponentBoard.cells.forEach((row, rowIndex) =>
+      row.forEach((cell, colIndex) => {
+        if (passedCells.has(`${rowIndex}_${colIndex}`)) return;
+        if (cell.classList.contains('ship'))
+          this.findShip(rowIndex, colIndex).forEach(([row, col]) =>
+            passedCells.add(`${row}_${col}`)
+          );
+      })
+    );
   }
 
   checkWin(owner) {
