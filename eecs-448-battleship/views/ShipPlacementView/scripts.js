@@ -37,28 +37,10 @@ class ShipPlacementView extends View {
     }).render(this.container.getElementsByClassName('board')[0]);
 
     /* Render between 1 and 6 ships on the sidebar */
-    const fleet = this.container.getElementsByClassName('fleet')[0];
-    fleet.innerHTML = Array.from({
-      length: this.options.numberOfShips,
-    })
-      .map(
-        (_, index) => `<label>
-        <input type="radio" class="sr-only" name="ship">
-        <span class="ship" aria-hidden="true">
-          ${Array.from({ length: index + 1 })
-            .fill('<span></span>')
-            .join('\n')}
-        </span>
-        <p class="sr-only">Ship ${index + 1}</p>
-      </label>`
-      )
-      .join('\n');
-
-    /* Allow selecting a ship and putting it on the board */
-    this.ships = Array.from(fleet.getElementsByTagName('input'));
-    this.ships.forEach((input) =>
-      input.addEventListener('change', this.handleSelectedShipChange)
-    );
+    this.fleet = await new Fleet({
+      numberOfShips: this.options.numberOfShips,
+      onChange: this.handleSelectedShipChange,
+    }).render(this.container.getElementsByClassName('fleet')[0]);
 
     this.rotateButton = this.container.getElementsByClassName('rotate')[0];
     this.rotateButton.addEventListener('click', this.handleRotateShip);
@@ -66,15 +48,9 @@ class ShipPlacementView extends View {
     this.finishButton = this.container.getElementsByClassName('finish')[0];
     this.finishButton.addEventListener('click', this.handleFinishPlacement);
 
-    /*
-     * TODO: once ready, call:
-     *  new GameBoard({ board: board }).render(this.container),
-     *   where board is a 9x10 array of booleans signifying whether there is a
-     *   ship at that cell
-     */
-
     return this;
   }
+  // Allow selecting a ship and putting it on the board
   handleSelectedShipChange({ target }) {
     this.currentShip = target;
     this.currentShipSize = getElementIndex(target.parentElement) + 1;
@@ -98,10 +74,14 @@ class ShipPlacementView extends View {
       ([row, col]) =>
         typeof this.board.cells[row]?.[col] !== 'undefined' &&
         [
+          [row, col - 1],
           [row, col],
+          [row, col + 1],
           [row - 1, col - 1],
+          [row - 1, col],
           [row - 1, col + 1],
           [row + 1, col - 1],
+          [row + 1, col],
           [row + 1, col + 1],
         ].every(
           ([row, col]) =>
@@ -122,7 +102,7 @@ class ShipPlacementView extends View {
       cell.classList.remove('invalid');
     });
   }
-  handleBoardCellClick(event) {
+  handleBoardCellClick() {
     if (!this.isValidPlacement) return;
     this.isValidPlacement = false;
 
@@ -132,28 +112,26 @@ class ShipPlacementView extends View {
       this.board.cells[row][col].classList.remove('invalid');
       this.board.cells[row][col].classList.add('ship');
     });
-    console.log(event);
 
     this.currentShip.disabled = true;
-    this.finishButton.disabled &&= !this.ships.every((input) => input.disabled);
+    this.finishButton.disabled &&= !this.fleet.ships.every(
+      (input) => input.disabled
+    );
   }
+  // Render game board once finished
   handleFinishPlacement() {
     new GameBoardView({
+      numberOfShips: this.options.numberOfShips,
       board: this.board.cells.map((row) =>
         row.map((cell) => cell.classList.contains('ship'))
-      )
+      ),
     }).render(this.container);
   }
   remove() {
     super.remove();
 
-    /* Remove event listeners (event.removeEventListener) */
-    this.ships.forEach((input) =>
-      input.removeEventListener(
-        'change',
-        this.handleSelectedShipChange.bind(this)
-      )
-    );
+    this.board.remove();
+    this.fleet.remove();
 
     this.rotateButton.removeEventListener('click', this.rotateShip);
   }

@@ -1,0 +1,42 @@
+/*
+ * All elements would be housed under a container with the className equal
+ * to component name (e.g. .MainView and .ShipPlacementView)
+ */
+
+.Fleet {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--half-size);
+}
+
+.Fleet label {
+  display: contents;
+}
+
+.Fleet .ship {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.Fleet input:checked ~ .ship {
+  cursor: initial;
+}
+
+.Fleet input[disabled] ~ .ship {
+  cursor: not-allowed;
+}
+
+.Fleet .ship span {
+  width: var(--double-size);
+  height: var(--double-size);
+  background: var(--b3);
+  border: var(--border-size) solid var(--b1);
+}
+
+.Fleet input:checked ~ .ship span {
+  background: var(--t3);
+}
+
+.Fleet input[disabled] ~ .ship span {
+  background: var(--b2);
+}
