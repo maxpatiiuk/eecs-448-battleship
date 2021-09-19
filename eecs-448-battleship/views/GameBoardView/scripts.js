@@ -68,6 +68,12 @@ class GameBoardView extends View {
     return this;
   }
 
+  /**
+   * Player turn message handling
+   * @function turn
+   * @memberof GameBoardView
+   * @param player 'player'|'opponent' for message variations 
+   */
   turn(player) {
     const message =
       player === 'opponent'
@@ -95,6 +101,15 @@ class GameBoardView extends View {
     }
   }
 
+  /**
+   * User prompt handler for messaging.
+   * @function promptUser
+   * @memberof GameBoardView
+   * @param question current question string
+   * @param buttonLeftText option one button text string
+   * @param buttonRightText option two button text string
+   * @param callback function, click handling
+   */
   promptUser(question, buttonLeftText, buttonRightText, callback) {
     this.dialog.innerHTML = `
       <h2>${question}</h2>
@@ -111,6 +126,14 @@ class GameBoardView extends View {
     buttons.map((button) => button.addEventListener('click', handleClick));
   }
 
+  /**
+   * Function to check results of offensive player game.
+   * @function checkOffenceResult
+   * @memberof GameBoardView
+   * @param row
+   * @param col 
+   * @param cell
+   */
   checkOffenceResult({ row, col, cell }) {
     const colLetter = getNthLetter(col);
     this.promptUser(
@@ -125,6 +148,13 @@ class GameBoardView extends View {
     );
   }
 
+  /**   
+   * Find ship on gameboard
+   * @function findShip
+   * @memberof GameBoardView
+   * @param row
+   * @param col 
+   */
   findShip(row, col) {
     const neighborCell = getNeighbourCells(row, col).find(([row, col]) =>
       this.opponentBoard.cells[row]?.[col]?.classList.contains('ship')
@@ -186,6 +216,11 @@ class GameBoardView extends View {
     return ship;
   }
 
+  /**   
+   * Add gameboard view border
+   * @function addBorder
+   * @memberof GameBoardView
+   */
   addBorder() {
     const passedCells = new Set();
     this.opponentBoard.cells.forEach((row, rowIndex) =>
@@ -199,6 +234,12 @@ class GameBoardView extends View {
     );
   }
 
+  /**   
+   * Check if player is victorious
+   * @function checkWin
+   * @memberof GameBoardView
+   * @param owner
+   */
   checkWin(owner) {
     const playerCanWin = owner === 'opponent';
     const board = playerCanWin ? this.opponentBoard : this.playerBoard;
@@ -215,6 +256,11 @@ class GameBoardView extends View {
     return win;
   }
 
+  /**   
+   * View remove function for ephemeral objects, ie. eventListeners
+   * @function remove
+   * @memberof GameBoardView
+   */
   remove() {
     super.remove();
 
