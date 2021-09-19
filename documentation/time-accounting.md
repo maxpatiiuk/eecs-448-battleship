@@ -137,7 +137,7 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
             <td>0.25h</td>
             <td>1h</td>
             <td>0h</td>
-            <td>2h</td>
+            <td>2.5h</td>
             <td>0h</td>
         </tr>
         <tr>
@@ -170,7 +170,7 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
             <td>0.25h</td>
             <td>1h</td>
             <td>0h</td>
-            <td>1h</td>
+            <td>2h</td>
             <td>0h</td>
         </tr>
         <tr>
@@ -210,7 +210,7 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
             <td>0h</td>
             <td>12.25h</td>
             <td>0h</td>
-            <td>0h</td>
+            <td>8.5h</td>
             <td>0h</td>
         </tr>
     </tbody>
