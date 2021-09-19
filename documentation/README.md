@@ -51,7 +51,8 @@ git clone https://github.com/maxxxxxdlp/eecs-448-battleship
 ```
 
 Configure a reverse proxy (e.x Nginx) that would serve eecs-448-battleship
-folder on a public URL and handle the SSL certificate.
+folder on a public URL and handle the SSL certificate. Have players connect 
+to the public instance to play with each other.
 
 ## Documentation Generation
 
