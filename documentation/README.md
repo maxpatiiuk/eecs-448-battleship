@@ -79,8 +79,17 @@ Open `docs-gen/index.html` in your browser to view the static docs.
 
 ## Works Cited
 
-- The boilerplate for a starter Next.JS project was copied from
-  [here](https://github.com/maxxxxxdlp/max.patii.uk)
+- The boilerplate for a starter project was copied from
+  [here](https://github.com/maxxxxxdlp/max.patii.uk). Then, it was modified to
+  remove dependency on Next.js, React and Tailwind.CSS
+- Game board is rendered using table elements for the sake of accessibility, but
+  it is styled as a grid, for the sake of convenience.
+  [User-agent table styles reset](https://github.com/maxxxxxdlp/eecs-448-battleship/blob/main/eecs-448-battleship/components/Board/styles.css#L12)
+  was copied from [here](https://stackoverflow.com/a/27851231/8584605) (with
+  modifications)
+- [Basic OOP implementation of MVC](https://github.com/maxxxxxdlp/eecs-448-battleship/blob/1c3ab08b1ac0621307e7af35c2ad064e9491836a/eecs-448-battleship/lib/js/view.js#L11)
+  was inspired by [Backbone.js](https://backbonejs.org/) (except, we simplified
+  and modernized it)
 
 ## Tech stack
 
