@@ -121,6 +121,7 @@ Tools used in the process of development
 - pre-commit.com
 - GitHub
 - Vim
+- PyCharm
 - Visual Studio CODE
 - Documentation.js
 
