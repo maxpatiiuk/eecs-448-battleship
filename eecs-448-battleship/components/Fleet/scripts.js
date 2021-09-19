@@ -3,11 +3,27 @@
 // The name of this component
 // Later, to render this view, call:
 // new Fleet(options).render(this.container)
-
+/**
+ * Base fleet class
+ * @class Fleet
+ * @constructor
+ * @param options
+ * @extends Component
+ * @public
+ */
 class Fleet extends Component {
   constructor(options) {
     super(options);
   }
+
+  /**
+   * Renders a defined view into a container. Passes in necessary, predefined
+   * render parameters.
+   * @async
+   * @function render
+   * @memberof Fleet
+   * @param container Container to render the view within
+   */
   async render(
     // Container would be populated with elements from index.html
     container
@@ -47,6 +63,12 @@ class Fleet extends Component {
 
     return this;
   }
+
+  /**   
+   * View remove function for ephemeral objects, ie. eventListeners
+   * @function remove
+   * @memberof Fleet
+   */
   remove() {
     super.remove();
 

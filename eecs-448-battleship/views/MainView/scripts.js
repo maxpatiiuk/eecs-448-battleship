@@ -21,6 +21,14 @@ class MainView extends View {
      */
   }
 
+  /**
+   * Renders a defined view into a container. Passes in necessary, predefined
+   * render parameters.
+   * @async
+   * @function render
+   * @memberof MainView
+   * @param container Container to render the view within
+   */
   async render(
     // Container would be populated with elements from index.html
     container
@@ -36,6 +44,12 @@ class MainView extends View {
     return this;
   }
 
+  /**
+   * Click handling 
+   * @function handleClick
+   * @memberof MainView
+   * @param target
+   */
   handleClick({ target: button }) {
     // Once a button is clicked, render ship placement view
     new ShipPlacementView({
@@ -43,6 +57,11 @@ class MainView extends View {
     }).render(this.container);
   }
 
+  /**   
+   * View remove function for ephemeral objects, ie. eventListeners
+   * @function remove
+   * @memberof MainView
+   */
   remove() {
     super.remove();
 

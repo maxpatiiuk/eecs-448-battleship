@@ -33,16 +33,49 @@ const generateBoard = ({ rows, cols }) => `<table>
 // The name of this component
 // Later, to render this component, call:
 // new Board(options).render(this.container)
+/**
+ * Base board class
+ * @class Board
+ * @constructor
+ * @param options
+ * @extends Component
+ * @public
+ */
 class Board extends Component {
+  /**
+   * Relevant class event listeners 
+   * @type {object}
+   * @memberof Board
+   * @param onMouseOver mouse over event listener
+   * @param onMouseOut mouse over event listener
+   * @param onClick mouse over event listener
+   * @public
+   */
   static #eventListeners = {
     onMouseOver: 'mouseover',
     omMouseOut: 'mouseout',
     onClick: 'click',
   };
+
+  /**
+   * Relevant class events 
+   * @type {object}
+   * @memberof Board
+   * @public
+   */
   #events = {};
   constructor(options) {
     super(options);
   }
+
+  /**
+   * Renders a defined view into a container. Passes in necessary, predefined
+   * render parameters.
+   * @async
+   * @function render
+   * @memberof Board
+   * @param container Container to render the view within
+   */
   async render(
     // Container would be populated with elements from index.html
     container
@@ -78,6 +111,12 @@ class Board extends Component {
 
     return this;
   }
+
+  /**   
+   * View remove function for ephemeral objects, ie. eventListeners
+   * @function remove
+   * @memberof Board
+   */
   remove() {
     super.remove();
 

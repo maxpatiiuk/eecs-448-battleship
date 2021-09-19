@@ -4,6 +4,14 @@
 // Later, to render this view, call:
 // new ShipPlacementView(options).render(this.container)
 
+/**
+ * Base ShipPlacementView class
+ * @class ShipPlacementView
+ * @constructor
+ * @param options
+ * @extends View
+ * @public
+ */
 class ShipPlacementView extends View {
   constructor(options) {
     super(options);
@@ -20,6 +28,15 @@ class ShipPlacementView extends View {
     this.handleRotateShip = this.handleRotateShip.bind(this);
     this.handleFinishPlacement = this.handleFinishPlacement.bind(this);
   }
+
+  /**
+   * Renders a defined view into a container. Passes in necessary, predefined
+   * render parameters.
+   * @async
+   * @function render
+   * @memberof ShipPlacementView
+   * @param container Container to render the view within
+   */
   async render(
     // Container would be populated with elements from index.html
     container
@@ -50,16 +67,41 @@ class ShipPlacementView extends View {
 
     return this;
   }
+  
   // Allow selecting a ship and putting it on the board
+  /**
+   * Handle changing a selected ship
+   * @function handleSelectedShipChange
+   * @param {object} target
+   * @memberof ShipPlacementView
+   * @public 
+   */
   handleSelectedShipChange({ target }) {
     this.currentShip = target;
     this.currentShipSize = getElementIndex(target.parentElement) + 1;
   }
+
+  /**
+   * Ship rotation handling for ship placement
+   * @function handleRotateShip
+   * @memberof ShipPlacementView
+   * @public  
+   */
   handleRotateShip() {
     const isToggled = this.orientatioon === 'vertical';
     this.orientatioon = isToggled ? 'horizontal' : 'vertical';
     this.rotateButton.ariaPressed = isToggled;
   }
+
+  /**
+   * Handle mouse over cell
+   * @function handleBoardCellOver
+   * @param {options}
+   * @param row
+   * @param column 
+   * @memberof ShipPlacementView
+   * @public  
+   */  
   handleBoardCellOver({ row, col }) {
     if (typeof this.currentShipSize !== 'number' || this.currentShip.disabled)
       return;
@@ -86,12 +128,26 @@ class ShipPlacementView extends View {
       )
     );
   }
+
+  /**
+   * Handle mouse leaving cell
+   * @function handleBoardCellOut
+   * @memberof ShipPlacementView
+   * @public  
+   */ 
   handleBoardCellOut() {
     this.board.cells.flat().map((cell) => {
       cell.classList.remove('shadow');
       cell.classList.remove('invalid');
     });
   }
+
+  /**
+   * Click handling for cells / placement
+   * @function handleBoardCellClick
+   * @memberof ShipPlacementView
+   * @public  
+   */ 
   handleBoardCellClick() {
     if (!this.isValidPlacement) return;
     this.isValidPlacement = false;
@@ -108,7 +164,13 @@ class ShipPlacementView extends View {
       (input) => input.disabled
     );
   }
-  // Render game board once finished
+
+  /**
+   * Render game board once finished
+   * @function handleFinishPlacement
+   * @memberof ShipPlacementView
+   * @public  
+   */ 
   handleFinishPlacement() {
     new GameBoardView({
       numberOfShips: this.options.numberOfShips,
@@ -117,6 +179,12 @@ class ShipPlacementView extends View {
       ),
     }).render(this.container);
   }
+
+  /**   
+   * View remove function for ephemeral objects, ie. eventListeners
+   * @function remove
+   * @memberof ShipPlacementView
+   */
   remove() {
     super.remove();
 

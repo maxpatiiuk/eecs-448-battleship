@@ -43,6 +43,11 @@ class GameOverView extends View {
     return this;
   }
 
+  /**   
+   * View remove function for ephemeral objects, ie. eventListeners
+   * @function remove
+   * @memberof GameOverView
+   */
   remove() {
     super.remove();
     /* Remove click event listeners */
