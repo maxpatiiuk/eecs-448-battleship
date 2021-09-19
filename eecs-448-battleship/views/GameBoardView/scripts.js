@@ -89,8 +89,10 @@ class GameBoardView extends View {
 
     event.cell.children[0].disabled = true;
     if (owner === 'opponent') this.checkOffenceResult(event);
-    else this.turn('opponent');
-    this.checkWin(owner);
+    else {
+      this.turn('opponent');
+      this.checkWin('player');
+    }
   }
 
   promptUser(question, buttonLeftText, buttonRightText, callback) {
@@ -118,7 +120,7 @@ class GameBoardView extends View {
       (isHit) => {
         if (isHit) cell.classList.add('ship');
         this.addBorder();
-        this.turn('player');
+        if (!isHit || !this.checkWin('opponent')) this.turn('player');
       }
     );
   }
@@ -158,25 +160,24 @@ class GameBoardView extends View {
         .reverse()
         .findIndex((ship) => !ship.disabled);
 
-    let canAddBorder;
+    let canAddBorder = trimmedShip.length === largestShip;
     if (typeof neighborCell === 'undefined')
-      canAddBorder = getNeighbourCells(row, col).every(
+      canAddBorder ||= getNeighbourCells(row, col).every(
         ([row, col]) =>
           this.opponentBoard.cells[row]?.[col]?.children[0].disabled !== false
       );
     else
-      canAddBorder =
-        trimmedShip.length === largestShip ||
-        (this.opponentBoard.cells[shipStart[0]]?.[shipStart[1]]?.children[0]
+      canAddBorder ||=
+        this.opponentBoard.cells[shipStart[0]]?.[shipStart[1]]?.children[0]
           .disabled !== false &&
-          this.opponentBoard.cells[shipEnd[0]]?.[shipEnd[1]]?.children[0]
-            .disabled !== false);
+        this.opponentBoard.cells[shipEnd[0]]?.[shipEnd[1]]?.children[0]
+          .disabled !== false;
 
     if (canAddBorder) {
       trimmedShip
         .flatMap(([row, col]) => getAllNeighbourCells(row, col))
         .forEach(([row, col]) => {
-          if (typeof this.opponentBoard.cells[row][col] !== 'undefined')
+          if (typeof this.opponentBoard.cells[row]?.[col] !== 'undefined')
             this.opponentBoard.cells[row][col].children[0].disabled = true;
         });
       this.fleet.ships[trimmedShip.length - 1].disabled = true;
@@ -203,19 +204,21 @@ class GameBoardView extends View {
     const board = playerCanWin ? this.opponentBoard : this.playerBoard;
     const discoveredShips = board.cells
       .flat()
-      .filter((cell) =>
-        cell.classList.contains(playerCanWin ? 'ship' : 'destroyed')
-      );
-    if (this.totalCells === discoveredShips)
+      .filter(
+        (cell) => cell.classList.contains('ship') && cell.children[0].disabled
+      ).length;
+    const win = this.totalCells === discoveredShips;
+    if (win)
       new GameOverView({
         win: playerCanWin,
       }).render(this.container);
+    return win;
   }
 
   remove() {
     super.remove();
 
-    /* TODO: Remove event listeners */
+    /* Remove event listeners */
     this.playerBoard.remove();
     this.oppositeBoard.remove();
   }

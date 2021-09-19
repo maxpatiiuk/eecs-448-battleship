@@ -45,7 +45,7 @@ class GameOverView extends View {
 
   remove() {
     super.remove();
-    /* TODO: Remove click event listeners (event.removeEventListener) */
+    /* Remove click event listeners */
     this.button.removeEventListener('click', this.onPlayAgain);
   }
 }
