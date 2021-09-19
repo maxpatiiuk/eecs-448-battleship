@@ -1,7 +1,5 @@
 'use strict';
 
-const getNthLetter = (index) => String.fromCharCode('A'.charCodeAt(0) + index);
-
 const generateBoard = ({ rows, cols }) => `<table>
   <thead>
     <tr>

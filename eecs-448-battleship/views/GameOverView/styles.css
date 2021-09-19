@@ -7,6 +7,5 @@
   display: inline-flex;
   flex-direction: column;
   row-gap: var(--double-size);
-  align-items: center;
   font-size: calc(var(--double-size) * 2);
 }

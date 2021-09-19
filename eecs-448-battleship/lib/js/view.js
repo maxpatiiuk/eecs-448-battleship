@@ -9,14 +9,14 @@
  * @public
  */
 class View {
-  /** 
+  /**
    * View Name
    * @type string
    * @memberof View
    * @public
    */
   #name;
-  
+
   /**
    * Total count of rendered views
    * @type number
@@ -78,6 +78,9 @@ class View {
       class="${this.#name}"
       id="${id}"
     ></${this.options.tagName}>`;
+
+    const { tagName, ...options } = this.options;
+    this.options = options;
 
     const newContainer = document.getElementById(id);
 

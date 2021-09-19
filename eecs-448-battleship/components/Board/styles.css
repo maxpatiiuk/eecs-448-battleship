@@ -1,4 +1,5 @@
 .Board {
+  /* Default value. It gets overridden later by JS */
   --cols: 10;
   --b-board-start: #a78bfa;
   --b-board-end: #fbbf24;
@@ -65,10 +66,10 @@ td {
 
 .Board td {
   background: var(--b1);
-  cursor: pointer;
 }
 
-.Board td.ship {
+.Board td.ship,
+.Board thead th:first-child {
   cursor: inherit;
   background: transparent;
 }
@@ -86,4 +87,13 @@ td {
   width: 100%;
   height: 100%;
   background: transparent;
+  cursor: pointer;
+}
+
+.Board td.invalid button {
+  cursor: not-allowed;
+}
+
+.Board td.ship button {
+  cursor: initial;
 }

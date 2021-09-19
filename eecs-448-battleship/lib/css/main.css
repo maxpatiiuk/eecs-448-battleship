@@ -1,7 +1,7 @@
 #root {
   display: flex;
   justify-content: center;
-  height: calc(100vh - var(--double-size) * 2);
+  height: 100vh;
   padding: var(--double-size);
 }
 
@@ -24,4 +24,5 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
