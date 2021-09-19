@@ -18,11 +18,11 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
         <tr>
             <th rowspan=5>Planning</th>
             <td>Team meetings</td>
-            <td>2h</td>
-            <td>2h</td>
-            <td>2h</td>
-            <td>2h</td>
-            <td>2h</td>
+            <td>2.5h</td>
+            <td>2.5h</td>
+            <td>2.5h</td>
+            <td>2.5h</td>
+            <td>2.5h</td>
         </tr>
         <tr>
             <td>Creating documentation boilerplate and project structure</td>
@@ -135,7 +135,7 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
         <tr>
             <td>Writing documentation</td>
             <td>0.25h</td>
-            <td>0h</td>
+            <td>1h</td>
             <td>0h</td>
             <td>2h</td>
             <td>0h</td>
@@ -168,7 +168,7 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
             <th rowspan=5>Testing and Maintenance</th>
             <td>General Testing</td>
             <td>0.25h</td>
-            <td>0h</td>
+            <td>1h</td>
             <td>0h</td>
             <td>1h</td>
             <td>0h</td>
@@ -208,7 +208,7 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
         <tr>
             <th colspan=2>Total</th>
             <td>0h</td>
-            <td>0h</td>
+            <td>12.25h</td>
             <td>0h</td>
             <td>0h</td>
             <td>0h</td>

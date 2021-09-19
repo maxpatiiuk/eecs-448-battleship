@@ -8,8 +8,7 @@ works cited.
 
 ## Time Estimate
 
-[Time estimate](time-estimate.md) and
-[actual accounting of time taken](time-accounting.md)
+[Time estimate](time-estimate.md) and [actual accounting of time taken](time-accounting.md).
 
 ## Development
 
@@ -56,7 +55,7 @@ folder on a public URL and handle the SSL certificate.
 
 ## Documentation Generation
 
-Documentation can be auto-generated with a tool called **documentation.js**. To
+Documentation can be auto-generated with the tool [Documentation.js](https://documentation.js.org/). To
 install documentation.js globally using npm:
 
 ```zsh
@@ -79,6 +78,7 @@ Open `docs-gen/index.html` in your browser to view the static docs.
 
 ## Works Cited
 
+#### Code References
 - The boilerplate for a starter project was copied from
   [here](https://github.com/maxxxxxdlp/max.patii.uk). Then, it was modified to
   remove dependency on Next.js, React and Tailwind.CSS
@@ -90,6 +90,20 @@ Open `docs-gen/index.html` in your browser to view the static docs.
 - [Basic OOP implementation of MVC](https://github.com/maxxxxxdlp/eecs-448-battleship/blob/1c3ab08b1ac0621307e7af35c2ad064e9491836a/eecs-448-battleship/lib/js/view.js#L11)
   was inspired by [Backbone.js](https://backbonejs.org/) (except, we simplified
   and modernized it)
+#### Documentation References
+- Answered questions on JSDoc syntax:
+https://stackoverflow.com/questions/46454372/grouping-functions-in-jsdoc-generated-documentation
+https://stackoverflow.com/questions/19230971/how-do-i-jsdoc-a-nested-objects-methods
+https://stackoverflow.com/questions/14611995/how-to-specify-an-array-of-objects-as-a-parameter-or-return-value-in-jsdoc
+https://stackoverflow.com/questions/6460604/how-to-describe-object-arguments-in-jsdoc
+https://stackoverflow.com/questions/28763257/jsdoc-return-object-structure
+https://stackoverflow.com/questions/30058201/adding-static-files-to-jsdoc
+
+- JSDocs Implementation Used:
+https://documentation.js.org/
+
+- Tag reference:
+https://jsdoc.app/
 
 ## Tech stack
 
@@ -106,7 +120,7 @@ Tools used in the process of development
 - pre-commit.com
 - GitHub
 - Vim
-- PyCharm
+- Visual Studio CODE
 - Documentation.js
 
 ## Licence
