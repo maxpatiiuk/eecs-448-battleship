@@ -113,7 +113,7 @@ An hour-by-hour (per-person) breakdown of time spent on this project.
             <td>0h</td>
             <td>1h</td>
             <td>0h</td>
-            <td>2h</td>
+            <td>3h</td>
         </tr>
         <tr>
             <th rowspan=2>Integration</th>
@@ -159,7 +159,7 @@ Total
             <td>12.5h</td>
             <td>9h</td>
             <td>8.75h</td>
-            <td>5h</td>
+            <td>6h</td>
         </tr>
     </tbody>
 </table>
