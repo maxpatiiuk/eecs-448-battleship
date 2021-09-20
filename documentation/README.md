@@ -72,7 +72,7 @@ To generate new documentation recursively for all files within the
 `eecs-448-battleship` directory, start in the root of the repository and run:
 
 ```zsh
-documentation build eecs-448-battleship/** -f html -o docs-gen
+documentation build eecs-448-battleship/** -f html -o documentation/auto-docs-gen
 ```
 
 Open `docs-gen/index.html` in your browser to view the static docs.
