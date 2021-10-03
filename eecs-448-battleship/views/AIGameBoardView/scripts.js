@@ -93,7 +93,7 @@ class GameBoardView extends View {
     var startingRow;
     var startingColumn;
     var growDirection;
-    var oopsies;
+    var badShip;
     for (var i = 1; i<= ships; i++){
       //get a random float between 0 and 1, multiply by 9, take the floor
       startingRow = Math.floor(Math.random()*9); //This should be between 0 and 8 if I am doing my math right.
@@ -101,10 +101,48 @@ class GameBoardView extends View {
       growDirection = Math.floor(Math.random()*10); //This should return a value 0 through 3, which will then be translated into a direction
       for(var j = 0; j < i; j++){
         if (growDirection == 0){//down
-          if (AIShips[startingRow+j][startingColumn] == 'x'){
-
+          if (AIShips[startingRow+j][startingColumn] == 'x' || startingRow+j > 8){
+            badShip = true;
+            break;
           }
         }
+        else if (growDirection == 1){//left
+          if (AIShips[startingRow][startingColumn-j] == 'x' || startingColumn-j < 0){
+            badShip = true;
+            break;
+          }
+        }
+        else if (growDirection == 2){//up
+          if (AIShips[startingRow-j][startingColumn] == 'x' || startingRow-j < 0){
+            badShip = true;
+            break;
+          }
+        }
+        else if (growDirection == 3){//right
+          if (AIShips[startingRow][startingColumn+j] == 'x' || startingColumn+j > 9){
+            badShip = true;
+            break;
+          }
+        }
+      }
+      if(!badShip){
+        for(var j = 0; j < i; j++){
+          if (growDirection == 0){//down
+            AIShips[startingRow+j][startingColumn] = 'x'
+          }
+          else if (growDirection == 1){//left
+            AIShips[startingRow][startingColumn-j] = 'x'
+          }
+          else if (growDirection == 2){//up
+            AIShips[startingRow-j][startingColumn] = 'x'
+          }
+          else if (growDirection == 3){//right
+            AIShips[startingRow][startingColumn+j] = 'x'
+          }
+        }
+      }
+      else{
+        i--;//retry placing this ship
       }
     }
   }
