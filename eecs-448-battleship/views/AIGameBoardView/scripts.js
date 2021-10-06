@@ -11,10 +11,92 @@
  * @extends View
  * @public
  */
-class GameBoardView extends View {
+class AIGameBoardView extends View {
   constructor(options) {
     super(options);
     this.totalCells = shipCellCount(this.options.numberOfShips);
+  }
+
+  /**
+   * This is going to be the method to randomly place the AI's ships on the board
+   * ~ = no ship and not hit
+   * X = ship there and hit
+   * x = unhit ship
+   * \ = no ship and shot
+   * @param {*} ships
+   */
+   makeAIBoard(ships){
+    //initializing array to all no ships
+    //coordinates are [row][column]
+    var AIShips = [
+      ['~','~','~','~','~','~','~','~','~','~'],
+      ['~','~','~','~','~','~','~','~','~','~'],
+      ['~','~','~','~','~','~','~','~','~','~'],
+      ['~','~','~','~','~','~','~','~','~','~'],
+      ['~','~','~','~','~','~','~','~','~','~'],
+      ['~','~','~','~','~','~','~','~','~','~'],
+      ['~','~','~','~','~','~','~','~','~','~'],
+      ['~','~','~','~','~','~','~','~','~','~'],
+      ['~','~','~','~','~','~','~','~','~','~']
+    ];
+    var startingRow;
+    var startingColumn;
+    var growDirection;
+    var badShip;
+    for (var i = 1; i<= ships; i++){
+      //@TODO: if the ship you are attempting to place overlaps with another ship, the program crashes
+      //is this caused by the order of the or statement?
+      //get a random float between 0 and 1, multiply by 9, take the floor
+      startingRow = Math.floor(Math.random()*9); //This should be between 0 and 8 if I am doing my math right.
+      startingColumn = Math.floor(Math.random()*10); //This should be between 0 and 9 if I am doing my math right.
+      growDirection = Math.floor(Math.random()*10); //This should return a value 0 through 3, which will then be translated into a direction
+      for(var j = 0; j < i; j++){
+        if (growDirection == 0){//down
+          if (AIShips[startingRow+j][startingColumn] == 'x' || startingRow+j > 8){
+            badShip = true;
+            break;
+          }
+        }
+        else if (growDirection == 1){//left
+          if (AIShips[startingRow][startingColumn-j] == 'x' || startingColumn-j < 0){
+            badShip = true;
+            break;
+          }
+        }
+        else if (growDirection == 2){//up
+          if (AIShips[startingRow-j][startingColumn] == 'x' || startingRow-j < 0){
+            badShip = true;
+            break;
+          }
+        }
+        else if (growDirection == 3){//right
+          if (AIShips[startingRow][startingColumn+j] == 'x' || startingColumn+j > 9){
+            badShip = true;
+            break;
+          }
+        }
+      }
+      if(!badShip){
+        for(var j = 0; j < i; j++){
+          if (growDirection == 0){//down
+            AIShips[startingRow+j][startingColumn] = 'x';
+          }
+          else if (growDirection == 1){//left
+            AIShips[startingRow][startingColumn-j] = 'x';
+          }
+          else if (growDirection == 2){//up
+            AIShips[startingRow-j][startingColumn] = 'x';
+          }
+          else if (growDirection == 3){//right
+            AIShips[startingRow][startingColumn+j] = 'x';
+          }
+        }
+      }
+      else{
+        i--;//retry placing this ship
+      }
+    }
+    return AIShips;
   }
 
   /**
@@ -22,7 +104,7 @@ class GameBoardView extends View {
    * render parameters.
    * @async
    * @function render
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    * @param container Container to render the view within
    */
   async render(
@@ -65,91 +147,26 @@ class GameBoardView extends View {
       this.turn(playerGoesFirst ? 'opponent' : 'player')
     );
 
+    this.AIBoard = this.makeAIBoard(this.options.numberOfShips);//I assume options.numberOfShips is 1-6 and not 1-21 for the number of cells
+
     return this;
   }
 
+  
   /**
-   * This is going to be the method to randomly place the AI's ships on the board
-   * ~ = no ship and not hit
-   * X = ship there and hit
-   * x = unhit ship
-   * \ = no ship and shot
-   * @param {*} ships
+   * check if the square that was shot had a ship on it
+   * @function checkHitAI
+   * @memberof AIGameBoardView
+   * @param row 
+   * @param col
    */
-  makeAIBoard(ships){
-    //initializing array to all no ships
-    //coordinates are [row][column]
-    var AIShips = [
-      ['~','~','~','~','~','~','~','~','~','~'],
-      ['~','~','~','~','~','~','~','~','~','~'],
-      ['~','~','~','~','~','~','~','~','~','~'],
-      ['~','~','~','~','~','~','~','~','~','~'],
-      ['~','~','~','~','~','~','~','~','~','~'],
-      ['~','~','~','~','~','~','~','~','~','~'],
-      ['~','~','~','~','~','~','~','~','~','~'],
-      ['~','~','~','~','~','~','~','~','~','~'],
-      ['~','~','~','~','~','~','~','~','~','~']
-    ];
-    var startingRow;
-    var startingColumn;
-    var growDirection;
-    var badShip;
-    for (var i = 1; i<= ships; i++){
-      //get a random float between 0 and 1, multiply by 9, take the floor
-      startingRow = Math.floor(Math.random()*9); //This should be between 0 and 8 if I am doing my math right.
-      startingColumn = Math.floor(Math.random()*10); //This should be between 0 and 9 if I am doing my math right.
-      growDirection = Math.floor(Math.random()*10); //This should return a value 0 through 3, which will then be translated into a direction
-      for(var j = 0; j < i; j++){
-        if (growDirection == 0){//down
-          if (AIShips[startingRow+j][startingColumn] == 'x' || startingRow+j > 8){
-            badShip = true;
-            break;
-          }
-        }
-        else if (growDirection == 1){//left
-          if (AIShips[startingRow][startingColumn-j] == 'x' || startingColumn-j < 0){
-            badShip = true;
-            break;
-          }
-        }
-        else if (growDirection == 2){//up
-          if (AIShips[startingRow-j][startingColumn] == 'x' || startingRow-j < 0){
-            badShip = true;
-            break;
-          }
-        }
-        else if (growDirection == 3){//right
-          if (AIShips[startingRow][startingColumn+j] == 'x' || startingColumn+j > 9){
-            badShip = true;
-            break;
-          }
-        }
-      }
-      if(!badShip){
-        for(var j = 0; j < i; j++){
-          if (growDirection == 0){//down
-            AIShips[startingRow+j][startingColumn] = 'x'
-          }
-          else if (growDirection == 1){//left
-            AIShips[startingRow][startingColumn-j] = 'x'
-          }
-          else if (growDirection == 2){//up
-            AIShips[startingRow-j][startingColumn] = 'x'
-          }
-          else if (growDirection == 3){//right
-            AIShips[startingRow][startingColumn+j] = 'x'
-          }
-        }
-      }
-      else{
-        i--;//retry placing this ship
-      }
-    }
+  checkHitAI(row, col){
+    return (this.AIBoard[row][col] == 'x');
   }
   /**
    * Player turn message handling
    * @function turn
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    * @param player 'player'|'opponent' for message variations 
    */
   turn(player) {
@@ -164,14 +181,14 @@ class GameBoardView extends View {
   /**
    * Board click event handler
    * @function handleBoardClick
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    * @param owner 'player'|'opponent' - whose board was clicked
    * @param event event to log
    */
   handleBoardClick(owner, event) {
-    if (this.container.getAttribute('data-focus') !== owner) return;
+    if (this.container.getAttribute('data-focus') !== owner) return;//if the container does not match the owner parameter, end the function
 
-    event.cell.children[0].disabled = true;
+    event.cell.children[0].disabled = true;//make it so we can't click on this square again
     if (owner === 'opponent') this.checkOffenceResult(event);
     else {
       this.turn('opponent');
@@ -182,7 +199,7 @@ class GameBoardView extends View {
   /**
    * User prompt handler for messaging.
    * @function promptUser
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    * @param question current question string
    * @param buttonLeftText option one button text string
    * @param buttonRightText option two button text string
@@ -207,29 +224,39 @@ class GameBoardView extends View {
   /**
    * Function to check results of offensive player game.
    * @function checkOffenceResult
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    * @param row
    * @param col 
    * @param cell
    */
   checkOffenceResult({ row, col, cell }) {
+    //row and col are both ints 0-8 and 0-9 respectively
+    //cell is the html element that represents the button on the page, it is the thing we actually have to change to make stuff show up on the web page
+    /*
     const colLetter = getNthLetter(col);
     this.promptUser(
       `Does opponent have a ship at <code>${colLetter}${row + 1}</code>?`,
       'Yes!',
       'no.',
       (isHit) => {
+        isHit = this.checkHitAI(row, col);
         if (isHit) cell.classList.add('ship');
         this.addBorder();
         if (!isHit || !this.checkWin('opponent')) this.turn('player');
       }
     );
+    */
+    var isHit = this.checkHitAI(row, col);
+    if (isHit) cell.classList.add('ship');
+    this.addBorder();
+    if (!isHit || !this.checkWin('opponent')) this.turn('player');
+    
   }
 
   /**   
    * Find ship on gameboard
    * @function findShip
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    * @param row
    * @param col 
    */
@@ -297,7 +324,7 @@ class GameBoardView extends View {
   /**   
    * Add gameboard view border
    * @function addBorder
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    */
   addBorder() {
     const passedCells = new Set();
@@ -315,7 +342,7 @@ class GameBoardView extends View {
   /**   
    * Check if player is victorious
    * @function checkWin
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    * @param owner
    */
   checkWin(owner) {
@@ -337,7 +364,7 @@ class GameBoardView extends View {
   /**   
    * View remove function for ephemeral objects, ie. eventListeners
    * @function remove
-   * @memberof GameBoardView
+   * @memberof AIGameBoardView
    */
   remove() {
     super.remove();

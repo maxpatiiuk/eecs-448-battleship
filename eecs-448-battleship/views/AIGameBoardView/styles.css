@@ -1,29 +1,29 @@
-.GameBoardView {
+.AIGameBoardView {
   display: flex;
   flex-direction: column;
   row-gap: var(--double-size);
   height: 70vh;
 }
 
-.GameBoardView aside {
+.AIGameBoardView aside {
   flex: 1;
   display: flex;
   flex-direction: column;
   row-gap: var(--half-size);
 }
 
-.GameBoardView aside button {
+.AIGameBoardView aside button {
   font-size: var(--size);
   padding: var(--size);
 }
 
-.GameBoardView .dialog {
+.AIGameBoardView .dialog {
   position: relative;
 }
 
-.GameBoardView[data-focus='dialog'] .dialog:before,
-.GameBoardView[data-focus='player'] .player-section:before,
-.GameBoardView[data-focus='opponent'] .opponent-section:before {
+.AIGameBoardView[data-focus='dialog'] .dialog:before,
+.AIGameBoardView[data-focus='player'] .player-section:before,
+.AIGameBoardView[data-focus='opponent'] .opponent-section:before {
   content: '';
   position: absolute;
   top: calc(var(--size) * -1);
@@ -34,32 +34,32 @@
   z-index: -1;
 }
 
-.GameBoardView .boards-container {
+.AIGameBoardView .boards-container {
   display: flex;
   column-gap: var(--double-size);
 }
 
-.GameBoardView .boards-container section {
+.AIGameBoardView .boards-container section {
   display: flex;
   flex-direction: column;
   row-gap: var(--half-size);
   position: relative;
 }
 
-.GameBoardView:not([data-focus='player']) .player-section button,
-.GameBoardView:not([data-focus='opponent']) .opponent-section button {
+.AIGameBoardView:not([data-focus='player']) .player-section button,
+.AIGameBoardView:not([data-focus='opponent']) .opponent-section button {
   cursor: not-allowed !important;
 }
 
-.GameBoardView .Board button,
-.GameBoardView .Fleet .ship span {
+.AIGameBoardView .Board button,
+.AIGameBoardView .Fleet .ship span {
   position: relative;
 }
 
-.GameBoardView .Board button[disabled]:before,
-.GameBoardView .Board button[disabled]:after,
-.GameBoardView .Fleet input[disabled] ~ .ship span:before,
-.GameBoardView .Fleet input[disabled] ~ .ship span:after {
+.AIGameBoardView .Board button[disabled]:before,
+.AIGameBoardView .Board button[disabled]:after,
+.AIGameBoardView .Fleet input[disabled] ~ .ship span:before,
+.AIGameBoardView .Fleet input[disabled] ~ .ship span:after {
   content: '';
   position: absolute;
   background: var(--error);
@@ -69,21 +69,21 @@
   left: calc(var(--size) * 0.9);
 }
 
-.GameBoardView .Board button:before,
-.GameBoardView .Fleet input[disabled] ~ .ship span:before {
+.AIGameBoardView .Board button:before,
+.AIGameBoardView .Fleet input[disabled] ~ .ship span:before {
   transform: rotate(45deg);
 }
 
-.GameBoardView .Board button:after,
-.GameBoardView .Fleet input[disabled] ~ .ship span:after {
+.AIGameBoardView .Board button:after,
+.AIGameBoardView .Fleet input[disabled] ~ .ship span:after {
   transform: rotate(-45deg);
 }
 
-.GameBoardView[data-focus='player'] td.ship button {
+.AIGameBoardView[data-focus='player'] td.ship button {
   cursor: pointer;
 }
 
-.GameBoardView .Fleet {
+.AIGameBoardView .Fleet {
   display: inline-flex;
   flex-direction: row;
   column-gap: var(--half-size);

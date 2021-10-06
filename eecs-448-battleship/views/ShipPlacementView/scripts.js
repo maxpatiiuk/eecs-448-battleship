@@ -27,6 +27,7 @@ class ShipPlacementView extends View {
     this.handleSelectedShipChange = this.handleSelectedShipChange.bind(this);
     this.handleRotateShip = this.handleRotateShip.bind(this);
     this.handleFinishPlacement = this.handleFinishPlacement.bind(this);
+    this.handleAIGamePlacement = this.handleAIGamePlacement.bind(this);
   }
 
   /**
@@ -64,6 +65,9 @@ class ShipPlacementView extends View {
 
     this.finishButton = this.container.getElementsByClassName('finish')[0];
     this.finishButton.addEventListener('click', this.handleFinishPlacement);
+
+    this.AIGameButton = this.container.getElementsByClassName('AIGame')[0];
+    this.AIGameButton.addEventListener('click', this.handleAIGamePlacement);
 
     return this;
   }
@@ -173,6 +177,15 @@ class ShipPlacementView extends View {
    */ 
   handleFinishPlacement() {
     new GameBoardView({
+      numberOfShips: this.options.numberOfShips,
+      board: this.board.cells.map((row) =>
+        row.map((cell) => cell.classList.contains('ship'))
+      ),
+    }).render(this.container);
+  }
+
+  handleAIGamePlacement() {
+    new AIGameBoardView({//this is where we go to game board view, need to change this to got to AIGameBoardView
       numberOfShips: this.options.numberOfShips,
       board: this.board.cells.map((row) =>
         row.map((cell) => cell.classList.contains('ship'))
