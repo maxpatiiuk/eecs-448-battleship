@@ -66,8 +66,26 @@ class ShipPlacementView extends View {
     this.finishButton = this.container.getElementsByClassName('finish')[0];
     this.finishButton.addEventListener('click', this.handleFinishPlacement);
 
-    this.AIGameButton = this.container.getElementsByClassName('AIGame')[0];
-    this.AIGameButton.addEventListener('click', this.handleAIGamePlacement);
+    this.AIGameButtonEasy = this.container.getElementsByClassName('AIGame')[0];
+    this.AIGameButtonEasy.addEventListener('click', () => {
+      this.options.difficulty = 'easy';
+      this.handleAIGamePlacement();
+    }
+    );
+
+    this.AIGameButtonMedium = this.container.getElementsByClassName('AIGame')[1];
+    this.AIGameButtonMedium.addEventListener('click', () => {
+      this.options.difficulty = 'medium';
+      this.handleAIGamePlacement();
+    }
+    );
+
+    this.AIGameButtonHard = this.container.getElementsByClassName('AIGame')[2];
+    this.AIGameButtonHard.addEventListener('click', () => {
+      this.options.difficulty = 'medium';
+      this.handleAIGamePlacement();
+    }
+    );
 
     return this;
   }
@@ -187,6 +205,7 @@ class ShipPlacementView extends View {
   handleAIGamePlacement() {
     new AIGameBoardView({//this is where we go to game board view, need to change this to got to AIGameBoardView
       numberOfShips: this.options.numberOfShips,
+      difficulty: this.options.difficulty,
       board: this.board.cells.map((row) =>
         row.map((cell) => cell.classList.contains('ship'))
       ),

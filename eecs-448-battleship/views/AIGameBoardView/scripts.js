@@ -4,7 +4,7 @@
 // Later, to render this view, call:
 // new GameBoardView(options).render(this.container)
 /**
- * Base GameBoard class
+ * Base AIGameBoard class
  * @class GameBoardView
  * @constructor
  * @param options
@@ -46,10 +46,13 @@ class AIGameBoardView extends View {
     for (var i = 1; i<= ships; i++){
       //@TODO: if the ship you are attempting to place overlaps with another ship, the program crashes
       //is this caused by the order of the or statement?
+      //@TODO: make it so you cannot place a ship next to another ship, or remove whatever disables surrounding spaces once you kill a ship
+      
       //get a random float between 0 and 1, multiply by 9, take the floor
+      badShip = false;
       startingRow = Math.floor(Math.random()*9); //This should be between 0 and 8 if I am doing my math right.
       startingColumn = Math.floor(Math.random()*10); //This should be between 0 and 9 if I am doing my math right.
-      growDirection = Math.floor(Math.random()*10); //This should return a value 0 through 3, which will then be translated into a direction
+      growDirection = Math.floor(Math.random()*4); //This should return a value 0 through 3, which will then be translated into a direction
       for(var j = 0; j < i; j++){
         if (growDirection == 0){//down
           if (AIShips[startingRow+j][startingColumn] == 'x' || startingRow+j > 8){
@@ -76,19 +79,24 @@ class AIGameBoardView extends View {
           }
         }
       }
+      alert(badShip)
       if(!badShip){
         for(var j = 0; j < i; j++){
           if (growDirection == 0){//down
             AIShips[startingRow+j][startingColumn] = 'x';
+            alert(startingRow+j + startingColumn+ "!");
           }
           else if (growDirection == 1){//left
             AIShips[startingRow][startingColumn-j] = 'x';
+            alert(startingRow + startingColumn-j + "!");
           }
           else if (growDirection == 2){//up
             AIShips[startingRow-j][startingColumn] = 'x';
+            alert(startingRow-j + startingColumn + "!");
           }
           else if (growDirection == 3){//right
             AIShips[startingRow][startingColumn+j] = 'x';
+            alert(startingRow + startingColumn+j + "!");
           }
         }
       }
@@ -142,12 +150,14 @@ class AIGameBoardView extends View {
       numberOfShips: this.options.numberOfShips,
     }).render(this.container.getElementsByClassName('opponent-fleet')[0]);
 
+    
+
     this.dialog = this.container.getElementsByClassName('dialog')[0];
     this.promptUser('Who goes first?', 'Me', 'Opponent', (playerGoesFirst) =>
       this.turn(playerGoesFirst ? 'opponent' : 'player')
     );
 
-    this.AIBoard = this.makeAIBoard(this.options.numberOfShips);//I assume options.numberOfShips is 1-6 and not 1-21 for the number of cells
+    this.setupAI();
 
     return this;
   }
@@ -162,6 +172,22 @@ class AIGameBoardView extends View {
    */
   checkHitAI(row, col){
     return (this.AIBoard[row][col] == 'x');
+  }
+
+  AIGuess(difficulty){
+    var badShot = true;
+    if(difficulty == 'easy'){
+      while (badShot){
+        RowGuess = Math.floor(Math.random()*9); //This should be between 0 and 8 if I am doing my math right.
+        ColumnGuess = Math.floor(Math.random()*10); //This should be between 0 and 9 if I am doing my math right.
+        if(!this.AIAttempts[RowGuess][ColumnGuess]){
+
+        }
+      }
+    }
+    else if(difficulty == 'medium'){
+
+    }
   }
   /**
    * Player turn message handling
@@ -359,6 +385,22 @@ class AIGameBoardView extends View {
         win: playerCanWin,
       }).render(this.container);
     return win;
+  }
+
+  setupAI(){
+    this.AIBoard = this.makeAIBoard(this.options.numberOfShips);//I assume options.numberOfShips is 1-6 and not 1-21 for the number of cells
+    
+    this.AIAttempts = [
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0]
+    ];
   }
 
   /**   
