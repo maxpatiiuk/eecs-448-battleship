@@ -82,7 +82,7 @@ class ShipPlacementView extends View {
 
     this.AIGameButtonHard = this.container.getElementsByClassName('AIGame')[2];
     this.AIGameButtonHard.addEventListener('click', () => {
-      this.options.difficulty = 'medium';
+      this.options.difficulty = 'hard';
       this.handleAIGamePlacement();
     }
     );

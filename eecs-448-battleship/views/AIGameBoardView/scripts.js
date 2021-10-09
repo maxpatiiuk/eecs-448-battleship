@@ -174,20 +174,27 @@ class AIGameBoardView extends View {
     return (this.AIBoard[row][col] == 'x');
   }
 
-  AIGuess(difficulty){
-    var badShot = true;
-    if(difficulty == 'easy'){
-      while (badShot){
-        RowGuess = Math.floor(Math.random()*9); //This should be between 0 and 8 if I am doing my math right.
-        ColumnGuess = Math.floor(Math.random()*10); //This should be between 0 and 9 if I am doing my math right.
-        if(!this.AIAttempts[RowGuess][ColumnGuess]){
-
-        }
-      }
+  AIGuess(){
+    const board = this.playerBoard;
+    if(this.options.difficulty == 'easy'){
+      var playerCells = board.cells.flat().filter(
+        (cell) => cell.children[0].disabled == false
+      );//list of all the ships we haven't shot at yet
+      var guessCellNum = Math.floor(Math.random()*playerCells.length);
+      (playerCells)[guessCellNum].children[0].disabled = true;
     }
-    else if(difficulty == 'medium'){
+    else if(this.options.difficulty == 'medium'){
 
     }
+    else{//difficulty == hard
+      var playerShips = board.cells.flat().filter(
+        (cell) => cell.classList.contains('ship') && cell.children[0].disabled == false
+      );//list of all the ships we haven't hit yet
+      var guessCellNum = Math.floor(Math.random()*playerShips.length);
+      (playerShips)[guessCellNum].children[0].disabled = true;
+    }
+    this.checkWin('player');
+    
   }
   /**
    * Player turn message handling
@@ -201,7 +208,12 @@ class AIGameBoardView extends View {
         ? 'Where do you want to fire?'
         : 'Where did your opponent fire?';
     this.dialog.innerHTML = `<h2>${message}</h2>`;
-    this.container.setAttribute('data-focus', player);
+    if(player == 'player'){
+      this.AIGuess();
+    }
+    if(player === 'opponent'){
+      this.container.setAttribute('data-focus', player);
+    }
   }
 
   /**
@@ -276,6 +288,7 @@ class AIGameBoardView extends View {
     if (isHit) cell.classList.add('ship');
     this.addBorder();
     if (!isHit || !this.checkWin('opponent')) this.turn('player');
+    //this.checkWin('opponent');
     
   }
 
@@ -333,7 +346,7 @@ class AIGameBoardView extends View {
           .disabled !== false &&
         this.opponentBoard.cells[shipEnd[0]]?.[shipEnd[1]]?.children[0]
           .disabled !== false;
-
+    /*
     if (canAddBorder) {
       trimmedShip
         .flatMap(([row, col]) => getAllNeighbourCells(row, col))
@@ -343,7 +356,7 @@ class AIGameBoardView extends View {
         });
       this.fleet.ships[trimmedShip.length - 1].disabled = true;
     }
-
+    */
     return ship;
   }
 
