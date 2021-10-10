@@ -19,10 +19,8 @@ class AIGameBoardView extends View {
 
   /**
    * This is going to be the method to randomly place the AI's ships on the board
-   * ~ = no ship and not hit
-   * X = ship there and hit
+   * ~ = no ship
    * x = unhit ship
-   * \ = no ship and shot
    * @param {*} ships
    */
    makeAIBoard(ships){
@@ -300,20 +298,7 @@ class AIGameBoardView extends View {
   checkOffenceResult({ row, col, cell }) {
     //row and col are both ints 0-8 and 0-9 respectively
     //cell is the html element that represents the button on the page, it is the thing we actually have to change to make stuff show up on the web page
-    /*
-    const colLetter = getNthLetter(col);
-    this.promptUser(
-      `Does opponent have a ship at <code>${colLetter}${row + 1}</code>?`,
-      'Yes!',
-      'no.',
-      (isHit) => {
-        isHit = this.checkHitAI(row, col);
-        if (isHit) cell.classList.add('ship');
-        this.addBorder();
-        if (!isHit || !this.checkWin('opponent')) this.turn('player');
-      }
-    );
-    */
+    
     var isHit = this.checkHitAI(row, col);
     if (isHit) cell.classList.add('ship');
     this.addBorder();
@@ -376,17 +361,6 @@ class AIGameBoardView extends View {
           .disabled !== false &&
         this.opponentBoard.cells[shipEnd[0]]?.[shipEnd[1]]?.children[0]
           .disabled !== false;
-    /*
-    if (canAddBorder) {
-      trimmedShip
-        .flatMap(([row, col]) => getAllNeighbourCells(row, col))
-        .forEach(([row, col]) => {
-          if (typeof this.opponentBoard.cells[row]?.[col] !== 'undefined')
-            this.opponentBoard.cells[row][col].children[0].disabled = true;
-        });
-      this.fleet.ships[trimmedShip.length - 1].disabled = true;
-    }
-    */
     return ship;
   }
 
