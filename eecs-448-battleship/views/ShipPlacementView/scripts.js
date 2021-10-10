@@ -185,6 +185,18 @@ class ShipPlacementView extends View {
     this.finishButton.disabled &&= !this.fleet.ships.every(
       (input) => input.disabled
     );
+
+    this.AIGameButtonEasy.disabled &&= !this.fleet.ships.every(
+      (input) => input.disabled
+    );
+
+    this.AIGameButtonMedium.disabled &&= !this.fleet.ships.every(
+      (input) => input.disabled
+    );
+
+    this.AIGameButtonHard.disabled &&= !this.fleet.ships.every(
+      (input) => input.disabled
+    );
   }
 
   /**
