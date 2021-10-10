@@ -65,11 +65,9 @@ class AIGameBoardView extends View {
         for(var j = 0; j < i; j++){
           if (growDirection == 0){//down
             AIShips[startingRow+j][startingColumn] = 'x';
-            alert(startingRow+j + startingColumn+ "!");
           }
           else if (growDirection == 1){//right
             AIShips[startingRow][startingColumn+j] = 'x';
-            alert(startingRow + startingColumn+j + "!");
           }
         }
       }
