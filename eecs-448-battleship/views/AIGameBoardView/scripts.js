@@ -44,57 +44,32 @@ class AIGameBoardView extends View {
     var growDirection;
     var badShip;
     for (var i = 1; i<= ships; i++){
-      //@TODO: if the ship you are attempting to place overlaps with another ship, the program crashes
-      //is this caused by the order of the or statement?
-      //@TODO: make it so you cannot place a ship next to another ship, or remove whatever disables surrounding spaces once you kill a ship
-      
-      //get a random float between 0 and 1, multiply by 9, take the floor
       badShip = false;
-      startingRow = Math.floor(Math.random()*9); //This should be between 0 and 8 if I am doing my math right.
-      startingColumn = Math.floor(Math.random()*10); //This should be between 0 and 9 if I am doing my math right.
-      growDirection = Math.floor(Math.random()*4); //This should return a value 0 through 3, which will then be translated into a direction
+      
+      growDirection = Math.floor(Math.random()*2); //This should return a value 0 through 3, which will then be translated into a direction
       for(var j = 0; j < i; j++){
         if (growDirection == 0){//down
-          if (AIShips[startingRow+j][startingColumn] == 'x' || startingRow+j > 8){
+          startingRow = Math.floor(Math.random()*(9-(i-1)));
+          startingColumn = Math.floor(Math.random()*(10));
+          if (AIShips[startingRow+j][startingColumn] == 'x'){
             badShip = true;
-            break;
           }
         }
-        else if (growDirection == 1){//left
-          if (AIShips[startingRow][startingColumn-j] == 'x' || startingColumn-j < 0){
+        else if (growDirection == 1){//right
+          startingRow = Math.floor(Math.random()*(9));
+          startingColumn = Math.floor(Math.random()*(10-(i-1)));
+          if (AIShips[startingRow][startingColumn+j] == 'x'){
             badShip = true;
-            break;
-          }
-        }
-        else if (growDirection == 2){//up
-          if (AIShips[startingRow-j][startingColumn] == 'x' || startingRow-j < 0){
-            badShip = true;
-            break;
-          }
-        }
-        else if (growDirection == 3){//right
-          if (AIShips[startingRow][startingColumn+j] == 'x' || startingColumn+j > 9){
-            badShip = true;
-            break;
           }
         }
       }
-      alert(badShip)
       if(!badShip){
         for(var j = 0; j < i; j++){
           if (growDirection == 0){//down
             AIShips[startingRow+j][startingColumn] = 'x';
             alert(startingRow+j + startingColumn+ "!");
           }
-          else if (growDirection == 1){//left
-            AIShips[startingRow][startingColumn-j] = 'x';
-            alert(startingRow + startingColumn-j + "!");
-          }
-          else if (growDirection == 2){//up
-            AIShips[startingRow-j][startingColumn] = 'x';
-            alert(startingRow-j + startingColumn + "!");
-          }
-          else if (growDirection == 3){//right
+          else if (growDirection == 1){//right
             AIShips[startingRow][startingColumn+j] = 'x';
             alert(startingRow + startingColumn+j + "!");
           }
@@ -176,6 +151,7 @@ class AIGameBoardView extends View {
 
   AIGuess(){
     const board = this.playerBoard;
+    var lastHitRow, lastHitColumn;
     if(this.options.difficulty == 'easy'){
       var playerCells = board.cells.flat().filter(
         (cell) => cell.children[0].disabled == false
@@ -184,7 +160,61 @@ class AIGameBoardView extends View {
       (playerCells)[guessCellNum].children[0].disabled = true;
     }
     else if(this.options.difficulty == 'medium'){
+      //var neighborCell = getNeighbourCells(row, col)
+      if(this.lastHitShip == null){
+        var playerCells = board.cells.flat().filter(
+          (cell) => cell.children[0].disabled == false
+        );//list of all the ships we haven't shot at yet
+        var guessCellNum = Math.floor(Math.random()*playerCells.length);
+        if((playerCells)[guessCellNum].classList.contains('ship')){
+          this.lastHitShip = (playerCells)[guessCellNum];
+          this.lastHitColumn = this.lastHitShip.cellIndex;
+          this.lastHitRow = this.lastHitShip.parentNode.rowIndex;
+        }
+        (playerCells)[guessCellNum].children[0].disabled = true;
+      }
+      else{//lastHitShip is an actual ship and we need to check its orthagonal squares
+        lastHitRow = this.lastHitRow-1;
+        lastHitColumn = this.lastHitColumn-1;
 
+        if(board.cells[lastHitRow+1][lastHitColumn].children[0].disabled == false){
+          if(board.cells[lastHitRow+1][lastHitColumn].classList.contains('ship')){
+            this.lastHitShip = board.cells[lastHitRow][lastHitColumn-1];
+            this.lastHitColumn = this.lastHitShip.cellIndex;
+            this.lastHitRow = this.lastHitShip.parentNode.rowIndex;
+          }
+          board.cells[lastHitRow+1][lastHitColumn].children[0].disabled = true;
+        }
+        else if(board.cells[lastHitRow-1][lastHitColumn].children[0].disabled == false){
+          if(board.cells[lastHitRow-1][lastHitColumn].classList.contains('ship')){
+            this.lastHitShip = board.cells[lastHitRow][lastHitColumn-1];
+            this.lastHitColumn = this.lastHitShip.cellIndex;
+            this.lastHitRow = this.lastHitShip.parentNode.rowIndex;
+          }
+          board.cells[lastHitRow-1][lastHitColumn].children[0].disabled = true;
+        }
+        else if(board.cells[lastHitRow][lastHitColumn+1].children[0].disabled == false){
+          if(board.cells[lastHitRow][lastHitColumn+1].classList.contains('ship')){
+            this.lastHitShip = board.cells[lastHitRow][lastHitColumn-1];
+            this.lastHitColumn = this.lastHitShip.cellIndex;
+            this.lastHitRow = this.lastHitShip.parentNode.rowIndex;
+          }
+          board.cells[lastHitRow][lastHitColumn+1].children[0].disabled = true;
+        }
+        else if(board.cells[lastHitRow][lastHitColumn-1].children[0].disabled == false){
+          if(board.cells[lastHitRow][lastHitColumn-1].classList.contains('ship')){
+            this.lastHitShip = board.cells[lastHitRow][lastHitColumn-1];
+            this.lastHitColumn = this.lastHitShip.cellIndex;
+            this.lastHitRow = this.lastHitShip.parentNode.rowIndex;
+          }
+          board.cells[lastHitRow][lastHitColumn-1].children[0].disabled = true;
+        }
+        else{
+          this.lastHitShip = null;
+          this.lastHitRow = null;
+          this.lastHitColumn = null;
+        }
+      }
     }
     else{//difficulty == hard
       var playerShips = board.cells.flat().filter(
@@ -402,18 +432,7 @@ class AIGameBoardView extends View {
 
   setupAI(){
     this.AIBoard = this.makeAIBoard(this.options.numberOfShips);//I assume options.numberOfShips is 1-6 and not 1-21 for the number of cells
-    
-    this.AIAttempts = [
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0]
-    ];
+    this.lastHitShip = null;
   }
 
   /**   
