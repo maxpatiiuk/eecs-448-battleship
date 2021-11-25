@@ -2,6 +2,10 @@
 
 A simple turn-based game of war. Place up to 6 ships on a 9x10 grid and try to sink your opponent's ships before they sink yours.
 
+[Live Demo](http://mambo.zzz.com.ua/project/eecs-448-battleship/eecs-448-battleship/)
+
+[Description of the development process](https://max.patii.uk/projects/battleship)
+
 
 ## Deployment and Documentation
 
