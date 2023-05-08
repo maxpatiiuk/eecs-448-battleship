@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/maxxxxxdlp/eecs-448-battleship"
+    "url": "https://github.com/maxpatiiuk/eecs-448-battleship"
   },
   "devDependencies": {
     "@maxxxxxdlp/eslint-config": "^1.0.7",
